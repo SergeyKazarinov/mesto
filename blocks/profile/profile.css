@@ -1,0 +1,8 @@
+.profile {
+  max-width: 880px;
+  min-height: 120px;
+  display: grid;
+  grid-template-columns: minmax(min-content, 120px) repeat(2, auto);
+  align-items: center;
+  column-gap: 30px;
+}
