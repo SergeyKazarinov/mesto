@@ -2,4 +2,12 @@
   min-height: 73px; 
   display: flex;
   justify-self: start;
+  justify-content: center;
+}
+
+@media screen and (max-width: 540px) {
+  .profile__info {
+    flex-direction: column;
+    margin: 0 auto;
+  }
 }
