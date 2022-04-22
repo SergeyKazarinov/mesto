@@ -2,12 +2,7 @@
   width: 150px;
   min-height: 50px;
   border: 2px solid #fff;
-  box-sizing: border-box;
-  padding: 0;
-  background-color: rgba(255, 255, 255, 0);
-  margin-right: 0;
   justify-self: end;
-  font-size: 0;
 }
 
 @media screen and (max-width: 540px) {
