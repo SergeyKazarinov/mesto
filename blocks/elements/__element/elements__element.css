@@ -1,0 +1,7 @@
+.elements__element {
+  min-height: 362px;
+  background-color: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+}

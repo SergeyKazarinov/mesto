@@ -1,12 +1,113 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <link rel="stylesheet" href="./pages/index.css">
+  <title>Mesto</title>
 </head>
-<body>
-  
+<body class="page">
+  <header class="header">
+    <img class="header__logo" src="./images/Logo.svg" alt="Логотип">
+  </header>
+  <main class="containt">
+    <section class="profile">
+      <div class="profile__avatar-block">
+        <img class="profile__avatar" src="./images/image.jpg" alt="Аватар">
+      </div>
+      <div class="profile__info">
+        <div class="profile__flex">
+          <div class="profile__flex-name">
+              <span class="profile__name">Жак-Ив Кусто</span>
+              <button class="edit-button button" name="edit-button">
+                <img class="profile__edit-image" src="./images/Edit.svg" alt="Редактировать">
+              </button>
+          </div>
+            <span class="profile__job">Исследователь океана</span>
+        </div>
+      </div>
+      <button class="profile__add-button button" name="add-button">
+        <img class="prodile__add-button-image" src="./images/add-button.svg" alt="Плюс">
+      </button>
+    </section>
+    <section class="elements">
+      <ul class="elements__grid list">
+        <li class="elements__element">
+          <div class="image">
+            <img class="elements__image" src="./images/Image1.jpg" alt="Скала у берега">
+          </div>
+          <p class="elements__text">Скала у берега</p>
+          <button class="elements__like button" name="like">
+            <img class="elements__like-image elements__like-image_active" src="./images/like_active.svg" alt="Сердечко">
+          </button>
+        </li>
+        <li class="elements__element">
+          <div class="image">
+            <img class="elements__image" src="./images/Image2.jpg" alt="Причал">
+          </div>
+          <p class="elements__text">Причал</p>
+          <button class="elements__like button" name="like">
+            <img class="elements__like-image" src="./images/like.svg" alt="Сердечко">
+          </button>
+        </li>
+        <li class="elements__element">
+          <div class="image">
+            <img class="elements__image" src="./images/Image3.jpg" alt="Ночной маяк">
+          </div>
+          <p class="elements__text">Ночной маяк</p>
+          <button class="elements__like button" name="like">
+            <img class="elements__like-image" src="./images/like.svg" alt="Сердечко">
+          </button>
+        </li>
+        <li class="elements__element">
+          <div class="image">
+            <img class="elements__image" src="./images/Image4.jpg" alt="Водопад">
+          </div>
+          <p class="elements__text">Водопад</p>
+          <button class="elements__like button" name="like">
+            <img class="elements__like-image" src="./images/like.svg" alt="Сердечко">
+          </button>
+        </li>
+        <li class="elements__element">
+          <div class="image">
+            <img class="elements__image" src="./images/Image5.jpg" alt="Зимний берег">
+          </div>
+          <p class="elements__text">Зимний берег</p>
+          <button class="elements__like button" name="like">
+            <img class="elements__like-image" src="./images/like.svg" alt="Сердечко">
+          </button>
+        </li>
+        <li class="elements__element">
+          <div class="image">
+            <img class="elements__image" src="./images/Image6.jpg" alt="Котейка">
+          </div>
+          <p class="elements__text">Котейка</p>
+          <button class="elements__like button" name="like">
+            <img class="elements__like-image" src="./images/like.svg" alt="Сердечко">
+          </button>
+        </li>
+      </ul>
+    </section>
+  </main>
+  <footer class="footer">
+    <p class="footer__copyright">© 2022. Mesto Russia</p>
+  </footer>
+  <section class="popup">
+    <div class="popup__flex">
+      <div class="popup__container">
+        <button type="button" class="button popup__close">
+          <img class="popup__image" src="./images/Close-Icon.svg" alt="Закрыть">
+        </button>
+        <p class="popup__title">Редактировать профиль</p>
+        <input type="text" class="input popup__name" id="name" value="">
+        <div class="popup__line"></div>
+        <input type="text" class="input popup__job" id="job" value="">
+        <div class="popup__line"></div>
+        <input type="submit" class="button popup__save" value="Сохранить">
+        </div>
+      </div>
+    </div>
+  </section>
+  <script src="./sciprts/script.js"></script>
 </body>
 </html>
