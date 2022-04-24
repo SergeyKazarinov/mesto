@@ -7,14 +7,6 @@
 }
 
 @font-face {
-  src: url('./Inter/__bold/Inter-Bold.ttf') format('truetype'),
-      url('./Inter/__bold/Inter-Bold.woff') format('woff'),
-      url('./Inter/__bold/Inter-Bold.woff2') format('woff2');
-  font-family: 'Inter';
-  font-weight: 600;
-}
-
-@font-face {
   src: url('./Inter/__regular/Inter-Regular.ttf') format('truetype'),
       url('./Inter/__regular/Inter-Regular.woff') format('woff'),
       url('./Inter/__regular/Inter-Regular.woff2') format('woff2');

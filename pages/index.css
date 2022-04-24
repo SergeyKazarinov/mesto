@@ -31,6 +31,7 @@
 @import url(../blocks/elements/__text/elements__text.css);
 @import url(../blocks/elements/__like/elements__like.css);
 @import url(../blocks/elements/__element-like/elements__like-image.css);
+@import url(../blocks/elements/__element-like/_avtive/elements__like-image_active.css);
 /* footer */
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/footer/__copyright/footer__copyright.css);
