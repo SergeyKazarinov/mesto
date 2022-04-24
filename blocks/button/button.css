@@ -4,4 +4,11 @@
   box-sizing: border-box;
   margin-right: 0;
   font-size: 0;
+  opacity: 1;
+}
+
+.button:hover {
+  opacity: .6;
+  transition: .5s;
+  cursor: pointer;
 }
