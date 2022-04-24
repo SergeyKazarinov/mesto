@@ -1,6 +1,6 @@
 .profile__flex-name {
   display: flex;
-  gap: 18px
+  gap: 18px;
 }
 
 @media screen and (max-width: 540px) {
