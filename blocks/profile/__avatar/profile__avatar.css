@@ -1,8 +1,0 @@
-.profile__avatar {
-  max-height: 120px;
-  border-radius: 100%;
-  object-fit: cover;
-  object-position: left;
-  overflow: hidden;
-  justify-self: start;
-}
