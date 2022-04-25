@@ -6,7 +6,9 @@
   align-items: center;
   column-gap: 30px; */
   display: flex;
+  justify-content: space-between;
   align-items: center;
+  column-gap: 30px;
 }
 
 @media screen and (max-width: 1120px) {
