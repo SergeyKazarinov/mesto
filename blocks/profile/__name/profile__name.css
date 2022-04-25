@@ -1,6 +1,6 @@
 .profile__name {
   max-width: calc(100vw - 300px - 400px - 24px - 18px - 30px); 
-                /* width - два размера ячеек flex - padding - размер иконки edit - gap margin-right */
+                /* width - два размера ячеек flex - padding - размер иконки edit - gap margin-right  */
   font-size: 42px;
   line-height: 114%;
   font-weight: 500;

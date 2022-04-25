@@ -6,5 +6,6 @@
 @media screen and (max-width: 540px) {
   .profile__flex-name {
     gap: 10px;
+    margin-right: -28px;
   }
 }
