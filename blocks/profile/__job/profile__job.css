@@ -7,6 +7,11 @@
   white-space: nowrap;
   overflow: hidden;
 }
+@media screen and (min-width: 1280px) {
+  .profile__job {
+    max-width: calc(1080px - 300px - 200px - 30px); 
+  }
+}
 
 @media screen and (max-width: 1120px) {
   .profile__job {

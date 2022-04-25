@@ -9,6 +9,12 @@
   overflow: hidden;
 }
 
+@media screen and (min-width: 1280px) {
+  .profile__name {
+    max-width: calc(1080px - 300px - 200px - 24px - 18px - 30px); 
+  }
+}
+
 @media screen and (max-width: 1120px) {
   .profile__name {
     max-width: calc(100vw - 300px - 200px - 24px - 18px - 30px); 
