@@ -23,14 +23,14 @@
 
 @media screen and (max-width: 970px) {
   .profile__name {
-    max-width: calc(100vw - 300px - 100px - 24px - 10px - 30px); 
+    max-width: calc(100vw - 300px - 100px - 24px - 10px - 30px);
     font-size: 36px;
   }
 }
 
 @media screen and (max-width: 540px) {
   .profile__name {
-    max-width: calc(100vw - 38px - 18px - 10px); 
+    max-width: calc(100vw - 38px - 18px - 10px);
     font-size: 27px;
     line-height: 33px;
     justify-items: center;
