@@ -4,10 +4,10 @@
   line-height: 29px;
   color: #000;
   margin: 0;
-  margin-left: 21px;
+  /* margin-left: 21px;
   margin-right: 20px;
-  margin-top: 25px;
-  width: 70%;
+  margin-top: 25px; */
+  /* width: 80%; */
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;

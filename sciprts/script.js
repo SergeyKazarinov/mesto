@@ -12,7 +12,7 @@ popupName.value = profileName.textContent;
 popupJob.value = profileJob.textContent;
 
 function toggleClass () {
-  popup.classList.toggle('popup__opened');
+  popup.classList.toggle('popup_opened');
 }
 
 popupOpenBtn.addEventListener ('click', function () {
