@@ -1,7 +1,6 @@
 .profile__info {
   /* min-height: 73px; */
   display: flex;
-  justify-self: start;
   justify-content: center;
 }
 

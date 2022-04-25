@@ -1,9 +1,12 @@
 .profile {
+  width: 100%;
   min-height: 120px;
-  display: grid;
+  /* display: grid;
   grid-template-columns: minmax(min-content, 120px) repeat(2, auto);
   align-items: center;
-  column-gap: 30px;
+  column-gap: 30px; */
+  display: flex;
+  align-items: center;
 }
 
 @media screen and (max-width: 1120px) {
