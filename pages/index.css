@@ -5,9 +5,9 @@
 @import url(../blocks/list/list.css);
 /* form */
 @import url(../blocks/form/form.css);
-@import url(../blocks/form/_type/form_type_name.css);
-@import url(../blocks/form/_type/form_type_job.css);
 @import url(../blocks/form/__input/form__input.css);
+@import url(../blocks/form/__input/_type/form__input_type_name.css);
+@import url(../blocks/form/__input/_type/form__input_type_job.css);
 
 /* button */
 @import url(../blocks/button/button.css);
