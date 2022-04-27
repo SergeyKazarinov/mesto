@@ -7,6 +7,7 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+  margin: 0;
 }
 
 @media screen and (min-width: 1280px) {
@@ -30,7 +31,7 @@
 
 @media screen and (max-width: 540px) {
   .profile__name {
-    max-width: calc(100vw - 38px - 18px - 10px);
+    max-width: calc(100vw - 38px - 18px - 10px - 28px);
     font-size: 27px;
     line-height: 33px;
     justify-items: center;

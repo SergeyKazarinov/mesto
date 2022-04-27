@@ -13,114 +13,89 @@
   <main class="containt">
     <section class="profile">
       <div class="profile__space-between">
-        <div class="profile__avatar-block">
-          <img class="profile__avatar" src="./images/image.jpg" alt="Аватар">
-        </div>
+        <img class="profile__avatar" src="./images/image.jpg" alt="Аватар">
         <div class="profile__info">
-          <div class="profile__flex">
-            <div class="profile__flex-name">
-                <span class="profile__name">Жак-Ив Кусто</span>
-                <button class="edit-button button" name="edit-button">
-                  <img class="profile__edit-image" src="./images/Edit.svg" alt="Редактировать">
-                </button>
-            </div>
-              <span class="profile__job">Исследователь океана</span>
+          <div class="profile__flex-name">
+            <h1 class="profile__name">Жак-Ив Кусто</h1>
+            <button class="button button_type_edit" type="button" aria-label="Редактировать имя и информацию" name="edit-button"></button>
           </div>
+            <span class="profile__job">Исследователь океана</span>
         </div>
       </div>
-      <button class="profile__add-button button" name="add-button">
-        <img class="profile__add-button-image" src="./images/add-button.svg" alt="Плюс">
-      </button>
+      <button class="button button_type_add" type="button" aria-label="Добавить изображение" name="add-button"></button>
     </section>
     <section class="elements">
       <ul class="elements__grid list">
-        <li class="elements__element">
-          <div class="image">
-            <img class="elements__image" src="./images/Image1.jpg" alt="Скала у берега">
-          </div>
-          <div class="elements__item">
-            <p class="elements__text">Скала у берега</p>
-            <button class="elements__like button" name="like">
-              <img class="elements__like-image elements__like-image_active" src="./images/like_active.svg" alt="Сердечко">
-            </button>
+        <li class="card">
+          <img class="card__image" src="./images/Image1.jpg" alt="Скала у берега">
+          <div class="card__item">
+            <h2 class="card__text">Скала у берега</h2>
+            <button class="button button_type_like" type="button" aria-label="Поставить лайк" name="like"></button>
           </div>
         </li>
-        <li class="elements__element">
-          <div class="image">
-            <img class="elements__image" src="./images/Image2.jpg" alt="Причал">
-          </div>
-          <div class="elements__item">
-            <p class="elements__text">Причал</p>
-            <button class="elements__like button" name="like">
-              <img class="elements__like-image" src="./images/like.svg" alt="Сердечко">
-            </button>
+        <li class="card">
+          <img class="card__image" src="./images/Image2.jpg" alt="Причал">
+          <div class="card__item">
+            <h2 class="card__text">Причал</h2>
+            <button class="button button_type_like" type="button" aria-label="Поставить лайк" name="like"></button>
           </div>
         </li>
-        <li class="elements__element">
-          <div class="image">
-            <img class="elements__image" src="./images/Image3.jpg" alt="Ночной маяк">
-          </div>
-          <div class="elements__item">
-            <p class="elements__text">Ночной маяк</p>
-            <button class="elements__like button" name="like">
-              <img class="elements__like-image" src="./images/like.svg" alt="Сердечко">
-            </button>
+        <li class="card">
+          <img class="card__image" src="./images/Image3.jpg" alt="Ночной маяк">
+          <div class="card__item">
+            <h2 class="card__text">Ночной маяк</h2>
+            <button class="button button_type_like" type="button" aria-label="Поставить лайк" name="like"></button>
           </div>
         </li>
-        <li class="elements__element">
-          <div class="image">
-            <img class="elements__image" src="./images/Image4.jpg" alt="Водопад">
-          </div>
-          <div class="elements__item">
-            <p class="elements__text">Водопад</p>
-            <button class="elements__like button" name="like">
-              <img class="elements__like-image" src="./images/like.svg" alt="Сердечко">
-            </button>
+        <li class="card">
+          <img class="card__image" src="./images/Image4.jpg" alt="Водопад">
+          <div class="card__item">
+            <h2 class="card__text">Водопад</h2>
+            <button class="button button_type_like" type="button" aria-label="Поставить лайк" name="like"></button>
           </div>
         </li>
-        <li class="elements__element">
-          <div class="image">
-            <img class="elements__image" src="./images/Image5.jpg" alt="Зимний берег">
-          </div>
-          <div class="elements__item">
-            <p class="elements__text">Зимний берег</p>
-            <button class="elements__like button" name="like">
-              <img class="elements__like-image" src="./images/like.svg" alt="Сердечко">
-            </button>
+        <li class="card">
+          <img class="card__image" src="./images/Image5.jpg" alt="Зимний берег">
+          <div class="card__item">
+            <h2 class="card__text">Зимний берег</h2>
+            <button class="button button_type_like" type="button" aria-label="Поставить лайк" name="like"></button>
           </div>
         </li>
-        <li class="elements__element">
-          <div class="image">
-            <img class="elements__image" src="./images/Image6.jpg" alt="Котейка">
-          </div>
-          <div class="elements__item">
-            <p class="elements__text">Котейка</p>
-            <button class="elements__like button" name="like">
-              <img class="elements__like-image" src="./images/like.svg" alt="Сердечко">
-            </button>
+        <li class="card">
+          <img class="card__image" src="./images/Image6.jpg" alt="Котейка">
+          <div class="card__item">
+            <h2 class="card__text">Котейка</h2>
+            <button class="button button_type_like" type="button" aria-label="Поставить лайк" name="like"></button>
           </div>
         </li>
       </ul>
     </section>
   </main>
   <footer class="footer">
-    <p class="footer__copyright">© 2022. Mesto Russia</p>
+    <p class="footer__copyright">&#169; 2022. Mesto Russia</p>
   </footer>
-  <section class="popup">
-    <div class="popup__flex">
+  <div class="popup">
       <div class="popup__container">
-        <button type="button" class="button popup__close">
-          <img class="popup__image" src="./images/Close-Icon.svg" alt="Закрыть">
-        </button>
-        <p class="popup__title">Редактировать профиль</p>
-        <input type="text" class="input popup__name" id="name" value="">
-        <div class="popup__line"></div>
-        <input type="text" class="input popup__job" id="job" value="">
-        <div class="popup__line"></div>
-        <input type="submit" class="button popup__save" value="Сохранить">
+        <button type="button" class="button button_type_close" aria-label="Закрыть окно"></button>
+        <form class="form" name="Profile-edit">
+          <h2 class="popup__title">Редактировать профиль</h2>
+          <input type="text" class="input input_type_name " id="name" value="" id="name">
+          <input type="text" class="input input_margin_top input_type_job" id="job" value="" id="job">
+          <button class="button button_type_save" value="Сохранить" id="button-save">Сохранить</button>
+        </form>
       </div>
-    </div>
-  </section>
+  </div>
   <script src="./sciprts/script.js"></script>
 </body>
 </html>
+
+<!-- <h2 class="popup__title">Редактировать профиль</h2>
+<form name="name" class="popup__name">
+  <input type="text" class="input input_type_name " id="name" value="" id="name">
+</form>
+<form name="job" class="popup__job">
+  <input type="text" class="input input_type_job" id="job" value="" id="job">
+</form>
+<form name="button-save">
+  <button class="button button_type_save" value="Сохранить" id="button-save">Сохранить</button>
+</form> -->

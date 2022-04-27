@@ -1,10 +1,9 @@
 .profile {
-  /* width: 100%; */
-  min-height: 120px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   column-gap: 30px;
+  flex-shrink: 0;
 }
 
 @media screen and (max-width: 1120px) {
@@ -21,9 +20,7 @@
 
 @media screen and (max-width: 540px) {
   .profile {
-    min-height: 286px;
     flex-direction: column;
     padding: 0 19px;
-    /* justify-items: center; */
   }
 }
