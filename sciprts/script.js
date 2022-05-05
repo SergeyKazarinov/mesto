@@ -1,44 +1,53 @@
-let popupOpenBtn = document.querySelector ('.edit-button');
 let popup = document.querySelector ('.popup');
-let PopupCloseBtn = document.querySelector ('.popup__close');
-let popupFlex = document.querySelector ('.popup__flex');
-let popupSaveBtn = document.querySelector ('.popup__save');
+let popupOpenBtn = document.querySelector ('.button_type_edit');
+let popupCloseBtn = document.querySelector ('.button_type_close');
+let nameInput = document.querySelector ('.form__input_type_name');
+let jobInput = document.querySelector ('.form__input_type_job');
 let profileName = document.querySelector ('.profile__name');
 let profileJob = document.querySelector ('.profile__job');
-let popupName = document.querySelector ('.popup__name');
-let popupJob = document.querySelector ('.popup__job');
+let formElement = document.querySelector('.form');
 
-popupName.value = profileName.textContent;
-popupJob.value = profileJob.textContent;
-
-function toggleClass () {
-  popup.classList.toggle('popup_opened');
+//функция открытия попапа
+function addClass () {
+  nameInput.value = profileName.textContent;
+  jobInput.value = profileJob.textContent;
+  popup.classList.add('popup_opened');
 }
 
-popupOpenBtn.addEventListener ('click', function () {
-  toggleClass();
-});
+//функция закрытия попапа
+function removeClass () {
+  popup.classList.remove('popup_opened');
+}
 
-popup.addEventListener ('click', function (event) {
-  if (event.target == popupFlex) {
-    toggleClass();
-  }
-});
+// Обработчик «отправки» формы, хотя пока
+// она никуда отправляться не будет
+function formSubmitHandler (evt) {
+    evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
+                                                // Так мы можем определить свою логику отправки.
+                                                // О том, как это делать, расскажем позже.
 
-// PopupCloseBtn.addEventListener('keydown', function () {
-//   toggleClass();
+    // Получите значение полей jobInput и nameInput из свойства value
+    // Выберите элементы, куда должны быть вставлены значения полей
+    // Вставьте новые значения с помощью textContent
+    profileName.textContent = nameInput.value;
+    profileJob.textContent = jobInput.value;
+    removeClass();
+}
+
+//событие открытия попапа
+popupOpenBtn.addEventListener ('click', addClass);
+
+//Событие закрытия попапа
+popupCloseBtn.addEventListener('click', removeClass);
+
+// он будет следить за событием “submit” - «отправка»
+formElement.addEventListener('submit', formSubmitHandler);
+
+//закрытие попапа кликом на любую облать
+// popup.addEventListener ('click', function (event) {
+//   if (event.target == popupFlex) {
+//     toggleClass();
+//   }
 // });
-
-PopupCloseBtn.addEventListener('click', function () {
-  toggleClass();
-});
-
-
-popupSaveBtn.addEventListener ('click', function (evt){
-  evt.preventDefault();
-  profileName.textContent = popupName.value;
-  profileJob.textContent = popupJob.value;
-  toggleClass();
-})
 
 

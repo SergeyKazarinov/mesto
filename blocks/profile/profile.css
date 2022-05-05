@@ -1,9 +1,9 @@
 .profile {
-  min-height: 120px;
-  display: grid;
-  grid-template-columns: minmax(min-content, 120px) auto 150px;
+  display: flex;
+  justify-content: space-between;
   align-items: center;
   column-gap: 30px;
+  flex-shrink: 0;
 }
 
 @media screen and (max-width: 1120px) {
@@ -20,10 +20,7 @@
 
 @media screen and (max-width: 540px) {
   .profile {
-    min-height: 286px;
-    grid-template-columns: auto;
-    grid-template-rows: minmax(min-content, 120px) repeat(2, auto);
-    margin: 0 16px;
-    justify-items: center;
+    flex-direction: column;
+    padding: 0 19px;
   }
 }
