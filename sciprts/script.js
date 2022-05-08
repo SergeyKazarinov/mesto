@@ -39,17 +39,17 @@ function formSubmitHandler (evt) {
     removeClass();
 }
 
-//событие открытия попапа редактирования профиля
-popupEditOpenBtn.addEventListener ('click', addClassPopupEditProfile);
 
-//событие открытия попапа добавления картинки
-popupAddImageOpenBtn.addEventListener('click', addClassAddImage);
+popupEditOpenBtn.addEventListener ('click', addClassPopupEditProfile); //событие открытия попапа редактирования профиля
+
+
+popupAddImageOpenBtn.addEventListener('click', addClassAddImage); //событие открытия попапа добавления картинки
 
 //Событие закрытия попапа
 popupCloseBtnEditProfile.addEventListener('click', removeClass);
 popupCloseBtnAddImage.addEventListener('click', removeClass);
-// он будет следить за событием “submit” - «отправка»
-formProfileEdit.addEventListener('submit', formSubmitHandler);
+
+formProfileEdit.addEventListener('submit', formSubmitHandler); // он будет следить за событием “submit” - «отправка»
 //закрытие попапа кликом на любую облать
 // popup.addEventListener ('click', function (event) {
 //   if (event.target == popupFlex) {
@@ -88,25 +88,33 @@ const initialCards = [
 const cardTemplate = document.querySelector('#cards').content;
 const cardOnline = document.querySelector('.elements__grid');
 
+//Удаление карточки
+const removeImage = evt => {
+  evt.target.closest('.card').remove();
+}
+
+//лайк
+const like = event => {
+	event.target.classList.toggle('button_type_like-active');
+}
+
 let cardElement;
 
 //заполнение сайта шестью карточками
 initialCards.forEach(item => {
-  //клонирование содержимое тега template
-  cardElement = cardTemplate.querySelector('.card').cloneNode(true);
+
+  cardElement = cardTemplate.querySelector('.card').cloneNode(true); //клонирование содержимое тега template
+
   //заполнение template данными
   cardElement.querySelector('.card__image').src = item.link;
   cardElement.querySelector('.card__image').alt = item.name;
   cardElement.querySelector('.card__text').textContent = item.name;
-  
-  //лайк
-  cardElement.querySelector('.button_type_like').addEventListener ('click', event => {
-  event.target.classList.toggle('button_type_like-active');
-  });
 
-  //добавление блока на сайт
-  cardOnline.append(cardElement);
-  
+  cardElement.querySelector('.button_type_like').addEventListener ('click', like); //лайк
+
+	cardElement.querySelector('.button_type_remove').addEventListener('click', removeImage); //Удаление картинки
+
+  cardOnline.append(cardElement); //добавление блока на сайт
 })
 
 //Добавление картинки
@@ -121,25 +129,14 @@ function AddImage (evt) {
   cardElement.querySelector('.card__image').alt = placeInput.value;
   cardElement.querySelector('.card__text').textContent = placeInput.value;
 
-  //лайк
-  cardElement.querySelector('.button_type_like').addEventListener ('click', event => {
-  event.target.classList.toggle('button_type_like-active');
-  });
+  cardElement.querySelector('.button_type_like').addEventListener ('click', like);  //лайк
 
-  //добавление блока на сайт
-  cardOnline.prepend(cardElement);
+	cardElement.querySelector('.button_type_remove').addEventListener('click', removeImage); //Удаление картинки
+  cardOnline.prepend(cardElement);  //добавление блока на сайт
   removeClass();
 }
 
 formAddImage.addEventListener('submit', AddImage);
-
-//удаление картинки
-
-const removeBtn = document.querySelector ('.button_type_remove');
-
-const removeImage = evt => {
-  evt.target.closest()
-}
 
 
 
