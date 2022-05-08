@@ -26,65 +26,53 @@
     </section>
     <section class="elements">
       <ul class="elements__grid list">
-        <li class="card">
-          <img class="card__image" src="./images/Image1.jpg" alt="Скала у берега">
-          <div class="card__item">
-            <h2 class="card__text">Скала у берега</h2>
-            <button class="button button_type_like" type="button" aria-label="Поставить лайк" name="like"></button>
-          </div>
-        </li>
-        <li class="card">
-          <img class="card__image" src="./images/Image2.jpg" alt="Причал">
-          <div class="card__item">
-            <h2 class="card__text">Причал</h2>
-            <button class="button button_type_like" type="button" aria-label="Поставить лайк" name="like"></button>
-          </div>
-        </li>
-        <li class="card">
-          <img class="card__image" src="./images/Image3.jpg" alt="Ночной маяк">
-          <div class="card__item">
-            <h2 class="card__text">Ночной маяк</h2>
-            <button class="button button_type_like" type="button" aria-label="Поставить лайк" name="like"></button>
-          </div>
-        </li>
-        <li class="card">
-          <img class="card__image" src="./images/Image4.jpg" alt="Водопад">
-          <div class="card__item">
-            <h2 class="card__text">Водопад</h2>
-            <button class="button button_type_like" type="button" aria-label="Поставить лайк" name="like"></button>
-          </div>
-        </li>
-        <li class="card">
-          <img class="card__image" src="./images/Image5.jpg" alt="Зимний берег">
-          <div class="card__item">
-            <h2 class="card__text">Зимний берег</h2>
-            <button class="button button_type_like" type="button" aria-label="Поставить лайк" name="like"></button>
-          </div>
-        </li>
-        <li class="card">
-          <img class="card__image" src="./images/Image6.jpg" alt="Котейка">
-          <div class="card__item">
-            <h2 class="card__text">Котейка</h2>
-            <button class="button button_type_like" type="button" aria-label="Поставить лайк" name="like"></button>
-          </div>
-        </li>
+        
       </ul>
     </section>
   </main>
   <footer class="footer">
     <p class="footer__copyright">&#169; 2022. Mesto Russia</p>
   </footer>
-  <div class="popup">
+  
+  <div class="popup popup_type_edit-profile">
       <div class="popup__container">
         <button type="button" class="button button_type_close" aria-label="Закрыть окно"></button>
         <h2 class="popup__title">Редактировать профиль</h2>
-        <form class="form" name="Profile-edit">
-          <input type="text" class="form__input form__input_type_name " value="" id="name">
-          <input type="text" class="form__input form__input_type_job" value="" id="job">
+        <form class="form" name="profile-edit">
+          <input type="text" class="form__input form__input_type_name " placeholder="Ваше имя" value="" id="name">
+          <input type="text" class="form__input form__input_type_job" placeholder="Информация о работе" value="" id="job">
           <button class="button button_type_save" value="Сохранить" id="button-save">Сохранить</button>
         </form>
       </div>
   </div>
+
+  <div class="popup popup_type_add-image">
+    <div class="popup__container">
+      <button type="button" class="button button_type_close" aria-label="Закрыть окно"></button>
+      <h2 class="popup__title">Новое место</h2>
+      <form class="form" name="add-image">
+        <input type="text" class="form__input form__input_type_place " placeholder="Название" value="" id="place" required>
+        <input type="text" class="form__input form__input_type_link" placeholder="Ссылка на картинку" value="" id="link" required>
+        <button class="button button_type_save" value="Создать" id="button-add">Создать</button>
+      </form>
+    </div>
+</div>
+
+  <template id="cards">
+    <li class="card">
+      <button class="button button_type_card" type="button" name="card-image">
+      <img class="card__image" src="" alt=""></button>
+      <button class="button button_type_remove" type="button" aria-label="Удалить картинку" name="remove-image"></button>
+      <div class="card__item">
+        <h2 class="card__text"></h2>
+        <button class="button button_type_like" type="button" aria-label="Поставить лайк" name="like"></button>
+      </div>
+    </li>
+  </template>
+
   <script src="./sciprts/script.js"></script>
 </body>
+
+
+
 </html>
