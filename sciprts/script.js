@@ -1,10 +1,14 @@
 const popup = document.querySelector ('.popup');
+const popupImageZoom = document.querySelector ('.popup_type_image-zoom');
 const popupEditProfile = document.querySelector ('.popup_type_edit-profile');
 const popupAddImage = document.querySelector ('.popup_type_add-image');
+
 const popupEditOpenBtn = document.querySelector ('.button_type_edit');
 const popupAddImageOpenBtn = document.querySelector ('.button_type_add');
 const popupCloseBtnEditProfile = popupEditProfile.querySelector ('.button_type_close');
 const popupCloseBtnAddImage = popupAddImage.querySelector ('.button_type_close');
+const popupCloseBtnImage = popupImageZoom.querySelector ('.button_type_close');
+
 const nameInput = document.querySelector ('.form__input_type_name');
 const jobInput = document.querySelector ('.form__input_type_job');
 const profileName = document.querySelector ('.profile__name');
@@ -23,10 +27,20 @@ function addClassAddImage () {
   popupAddImage.classList.add('popup_opened');
 }
 
+function addClassImageZoom () {
+	popupImageZoom.classList.add('popup_opened');
+}
+
 //функция закрытия попапа
 function removeClass () {
+	if(popupEditProfile.classList.contains('popup_opened')) 
   popupEditProfile.classList.remove('popup_opened');
+
+	if(popupAddImage.classList.contains('popup_opened'))
   popupAddImage.classList.remove('popup_opened');
+
+	if(popupImageZoom.classList.contains('popup_opened'))
+	popupImageZoom.classList.remove('popup_opened');
 }
 
 // Обработчик «отправки» формы, хотя пока
@@ -39,15 +53,14 @@ function formSubmitHandler (evt) {
     removeClass();
 }
 
-
 popupEditOpenBtn.addEventListener ('click', addClassPopupEditProfile); //событие открытия попапа редактирования профиля
-
 
 popupAddImageOpenBtn.addEventListener('click', addClassAddImage); //событие открытия попапа добавления картинки
 
 //Событие закрытия попапа
 popupCloseBtnEditProfile.addEventListener('click', removeClass);
 popupCloseBtnAddImage.addEventListener('click', removeClass);
+popupCloseBtnImage.addEventListener('click', removeClass);
 
 formProfileEdit.addEventListener('submit', formSubmitHandler); // он будет следить за событием “submit” - «отправка»
 //закрытие попапа кликом на любую облать
@@ -98,7 +111,24 @@ const like = event => {
 	event.target.classList.toggle('button_type_like-active');
 }
 
+//открытие попап с картинкой
+const openPopupImage = event => {
+	console.log(event.target.closest('.card__image').src);
+	const image = popupImageZoom.querySelector('.popup__image');
+	image.src = event.target.closest('.card__image').src;
+	image.alt = event.target.closest('.card__image').alt;
+	popupImageZoom.querySelector('.popup__text').textContent = event.target.closest('.card__image').alt;
+
+	addClassImageZoom();
+}
+
 let cardElement;
+
+const actionBtn = () => {
+  cardElement.querySelector('.button_type_like').addEventListener ('click', like); //лайк
+	cardElement.querySelector('.button_type_remove').addEventListener('click', removeImage); //Удаление картинки
+	cardElement.querySelector('.button_type_card').addEventListener('click', openPopupImage) //открытие картинки
+}
 
 //заполнение сайта шестью карточками
 initialCards.forEach(item => {
@@ -110,9 +140,7 @@ initialCards.forEach(item => {
   cardElement.querySelector('.card__image').alt = item.name;
   cardElement.querySelector('.card__text').textContent = item.name;
 
-  cardElement.querySelector('.button_type_like').addEventListener ('click', like); //лайк
-
-	cardElement.querySelector('.button_type_remove').addEventListener('click', removeImage); //Удаление картинки
+	actionBtn();
 
   cardOnline.append(cardElement); //добавление блока на сайт
 })
@@ -122,21 +150,21 @@ const placeInput = document.querySelector ('.form__input_type_place');
 const linkInput = document.querySelector ('.form__input_type_link');
 const makeBtn = document.querySelector ('.button_type_make');
 
-function AddImage (evt) {
+function addImage (evt) {
   evt.preventDefault();
   cardElement = cardTemplate.querySelector('.card').cloneNode(true);
   cardElement.querySelector('.card__image').src = linkInput.value;
   cardElement.querySelector('.card__image').alt = placeInput.value;
   cardElement.querySelector('.card__text').textContent = placeInput.value;
-
-  cardElement.querySelector('.button_type_like').addEventListener ('click', like);  //лайк
-
-	cardElement.querySelector('.button_type_remove').addEventListener('click', removeImage); //Удаление картинки
+	linkInput.value = '';
+	placeInput.value = '';
+	actionBtn();
   cardOnline.prepend(cardElement);  //добавление блока на сайт
+
   removeClass();
 }
 
-formAddImage.addEventListener('submit', AddImage);
+formAddImage.addEventListener('submit', addImage);
 
 
 
