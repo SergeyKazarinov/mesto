@@ -36,10 +36,10 @@ function removeClass () {
 	if(popupEditProfile.classList.contains('popup_opened')) 
   popupEditProfile.classList.remove('popup_opened');
 
-	if(popupAddImage.classList.contains('popup_opened'))
+	else if(popupAddImage.classList.contains('popup_opened'))
   popupAddImage.classList.remove('popup_opened');
 
-	if(popupImageZoom.classList.contains('popup_opened'))
+	else if(popupImageZoom.classList.contains('popup_opened'))
 	popupImageZoom.classList.remove('popup_opened');
 }
 
@@ -113,7 +113,6 @@ const like = event => {
 
 //открытие попап с картинкой
 const openPopupImage = event => {
-	console.log(event.target.closest('.card__image').src);
 	const image = popupImageZoom.querySelector('.popup__image');
 	image.src = event.target.closest('.card__image').src;
 	image.alt = event.target.closest('.card__image').alt;
@@ -136,9 +135,11 @@ initialCards.forEach(item => {
   cardElement = cardTemplate.querySelector('.card').cloneNode(true); //клонирование содержимое тега template
 
   //заполнение template данными
-  cardElement.querySelector('.card__image').src = item.link;
-  cardElement.querySelector('.card__image').alt = item.name;
-  cardElement.querySelector('.card__text').textContent = item.name;
+	const cardImage = cardElement.querySelector('.card__image');
+	const cardText = cardElement.querySelector('.card__text');
+  cardImage.src = item.link;
+  cardImage.alt = item.name;
+  cardText.textContent = item.name;
 
 	actionBtn();
 
@@ -153,9 +154,11 @@ const makeBtn = document.querySelector ('.button_type_make');
 function addImage (evt) {
   evt.preventDefault();
   cardElement = cardTemplate.querySelector('.card').cloneNode(true);
-  cardElement.querySelector('.card__image').src = linkInput.value;
-  cardElement.querySelector('.card__image').alt = placeInput.value;
-  cardElement.querySelector('.card__text').textContent = placeInput.value;
+	const cardImage = cardElement.querySelector('.card__image');
+	const cardText = cardElement.querySelector('.card__text');
+  cardImage.src = linkInput.value;
+  cardImage.alt = placeInput.value;
+  cardText.textContent = placeInput.value;
 	linkInput.value = '';
 	placeInput.value = '';
 	actionBtn();
@@ -165,9 +168,3 @@ function addImage (evt) {
 }
 
 formAddImage.addEventListener('submit', addImage);
-
-
-
-
-
-
