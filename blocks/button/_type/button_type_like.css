@@ -1,6 +1,6 @@
 .button_type_like {
   border: 0;
-  width: 22px;
+  min-width: 22px;
   height: 19px;
   margin-top: 5px;
   margin-right: 5px;
