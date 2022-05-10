@@ -55,13 +55,13 @@ const fillForm = () => {
 }
 
 /** функция открытия попапа */
-const addClass = (event) => {
-	event.classList.add('popup_opened');
+const openPopup = popup => {
+	popup.classList.add('popup_opened');
 }
 
 /** функция закрытия попапа */
-const removeClass = event => {
-	event.classList.remove('popup_opened');
+const closePopup = popup => {
+	popup.classList.remove('popup_opened');
 }
 
 /** Удаление карточки */
@@ -81,18 +81,18 @@ const openPopupImage = event => {
 	image.alt = event.target.closest('.card__image').alt;
 	popupImageZoom.querySelector('.popup__text').textContent = event.target.closest('.card__image').alt;
 
-	addClass(popupImageZoom);
+	openPopup(popupImageZoom);
 }
 
 /** функция заполяет карточки данными */
-const createCard = (name, link) => {
+const createCard = (cardData) => {
 	const cardElement = cardTemplate.querySelector('.card').cloneNode(true);
 	const cardImage = cardElement.querySelector('.card__image');
 	const cardText = cardElement.querySelector('.card__text');
 
-	cardImage.src = link;
-	cardImage.alt = name;
-	cardText.textContent = name;
+	cardImage.src = cardData.link;
+	cardImage.alt = cardData.name;
+	cardText.textContent = cardData.name;
 
 	cardElement.querySelector('.button_type_like').addEventListener ('click', like); //лайк
 	cardElement.querySelector('.button_type_remove').addEventListener('click', removeImage); //Удаление картинки
@@ -102,25 +102,25 @@ const createCard = (name, link) => {
 }
 
 /** функция добавления карточки в контейнер */
-const renderCard = (wrap, name, link) => {
-	wrap.append(createCard(name, link));
+const renderCardAppend = (wrap, name, link) => {
+	wrap.append(createCard({name, link}));
 }
 
 /** заполнение сайта шестью карточками */
 initialCards.forEach((item) => {
-  renderCard(newCard, item.name, item.link);
+  renderCardAppend(newCard, item.name, item.link);
 })
 
 /** Добавление картинки */
-const addCard = (wrap, name, link) => {
-	wrap.prepend(createCard(name, link));
+const renderCardPrepend = (wrap, name, link) => {
+	wrap.prepend(createCard({name, link}));
 }
 
-const addImage = evt => {
+const addCard = evt => {
   evt.preventDefault();
-	addCard(newCard, placeInput.value, linkInput.value);
+	renderCardPrepend(newCard, placeInput.value, linkInput.value);
 	formAddImage.reset();
-	removeClass(popupAddImage);
+	closePopup(popupAddImage);
 }
 
 /** Обработчик «отправки» формы, хотя пока
@@ -131,32 +131,32 @@ function formEditProfileSubmitHandler (evt) {
     profileName.textContent = nameInput.value;
     profileJob.textContent = jobInput.value;
 
-    removeClass(popupEditProfile);
+    closePopup(popupEditProfile);
 }
 
 /** событие открытия попапа редактирования профиля */
 popupEditOpenBtn.addEventListener ('click', () => {
 	fillForm();
-	addClass(popupEditProfile);
+	openPopup(popupEditProfile);
 });
 
 /** событие открытия попапа добавления картинки */
 popupAddImageOpenBtn.addEventListener('click', () => {
-	addClass(popupAddImage);
+	openPopup(popupAddImage);
 });
 
 /** События закрытия попапа */
 popupCloseBtnEditProfile.addEventListener('click', () => {
-	removeClass(popupEditProfile);
+	closePopup(popupEditProfile);
 });
 popupCloseBtnAddImage.addEventListener('click', () => {
-	removeClass(popupAddImage);
+	closePopup(popupAddImage);
 });
 popupCloseBtnImage.addEventListener('click', () => {
-	removeClass(popupImageZoom);
+	closePopup(popupImageZoom);
 });
 /** событие отправки формы с именем */
 formProfileEdit.addEventListener('submit', formEditProfileSubmitHandler);
 
 /** событие добавление картинки на сайт */
-formAddImage.addEventListener('submit', addImage);
+formAddImage.addEventListener('submit', addCard);
