@@ -1,13 +1,11 @@
 /** модальные окна */
+const popupContainer = document.querySelector ('.popup');
 const popupImageZoom = document.querySelector ('.popup_type_image-zoom');
 const popupEditProfile = document.querySelector ('.popup_type_edit-profile');
 const popupAddImage = document.querySelector ('.popup_type_add-image');
 /** кнопки */
 const popupEditOpenBtn = document.querySelector ('.button_type_edit');
 const popupAddImageOpenBtn = document.querySelector ('.button_type_add');
-const popupCloseBtnEditProfile = popupEditProfile.querySelector ('.button_type_close');
-const popupCloseBtnAddImage = popupAddImage.querySelector ('.button_type_close');
-const popupCloseBtnImage = popupImageZoom.querySelector ('.button_type_close');
 /** поля и формы */
 const nameInput = document.querySelector ('.form__input_type_name');
 const jobInput = document.querySelector ('.form__input_type_job');
@@ -61,7 +59,25 @@ const openPopup = popup => {
 
 /** функция закрытия попапа */
 const closePopup = popup => {
-	popup.classList.remove('popup_opened');
+    popup.classList.remove('popup_opened');
+}
+
+const closePopupOverlay = () => {
+  const popupList = Array.from(document.querySelectorAll('.popup'));
+
+  popupList.forEach(popupElement => {
+    popupElement.addEventListener('click', event => {
+      if(!event.target.closest('.popup__container') || event.target.closest('.button_type_close')) {
+        closePopup(popupElement);
+      }
+    });
+  });
+
+  popupList.forEach(popupElement => {
+    popupElement.addEventListener('keydown', event => {
+      console.log(event);
+    });
+  });
 }
 
 /** Удаление карточки */
@@ -123,6 +139,9 @@ const addCard = evt => {
 	closePopup(popupAddImage);
 }
 
+/** Вызов функции закрытия попапа */
+closePopupOverlay();
+
 /** Обработчик «отправки» формы, хотя пока
 она никуда отправляться не будет */
 function formEditProfileSubmitHandler (evt) {
@@ -145,16 +164,6 @@ popupAddImageOpenBtn.addEventListener('click', () => {
 	openPopup(popupAddImage);
 });
 
-/** События закрытия попапа */
-popupCloseBtnEditProfile.addEventListener('click', () => {
-	closePopup(popupEditProfile);
-});
-popupCloseBtnAddImage.addEventListener('click', () => {
-	closePopup(popupAddImage);
-});
-popupCloseBtnImage.addEventListener('click', () => {
-	closePopup(popupImageZoom);
-});
 /** событие отправки формы с именем */
 formProfileEdit.addEventListener('submit', formEditProfileSubmitHandler);
 
