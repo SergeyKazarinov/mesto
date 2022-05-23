@@ -34,18 +34,37 @@
     <p class="footer__copyright">&#169; 2022. Mesto Russia</p>
   </footer>
   
-  <div class="popup popup_type_edit-profile popup_opened">
+  <div class="popup popup_type_edit-profile">
       <div class="popup__container">
         <button type="button" class="button button_type_close" aria-label="Закрыть окно"></button>
         <h2 class="popup__title">Редактировать профиль</h2>
-        <form class="form" name="profile-edit">
+        <form class="form" name="profile-edit" novalidate>
           <fieldset class="form__set">
-            <input type="text" class="form__input form__input_type_name form__input_type_error" placeholder="Ваше имя" value="" id="name">
-            <span class="form__input-error">Вы пропустили это поле</span>
-            <input type="text" class="form__input form__input_type_job form__input_type_error" placeholder="Информация о работе" value="" id="job">
-            <span class="form__input-error">Введите адрес сайта</span>
-            <button class="button button_type_save" value="Сохранить" id="button-save">Сохранить</button>
+            <input
+              type="text"
+              class="form__input form__input_type_name"
+              placeholder="Ваше имя"
+              value=""
+              id="input-name"
+              minlength="2"
+              maxlength="40"
+              required>
+            <span class="form__input-error input-name-error"></span>
           </fieldset>
+
+          <fieldset class="form__set">
+            <input
+              type="text"
+              class="form__input form__input_type_job"
+              placeholder="Информация о работе"
+              value=""
+              id="input-job"
+              minlength="2"
+              maxlength="200"
+              required>
+            <span class="form__input-error input-job-error"></span>
+          </fieldset>
+          <button class="button button_type_save" value="Сохранить" id="button-save">Сохранить</button>
         </form>
       </div>
   </div>
@@ -54,14 +73,31 @@
     <div class="popup__container">
       <button type="button" class="button button_type_close" aria-label="Закрыть окно"></button>
       <h2 class="popup__title">Новое место</h2>
-      <form class="form" name="add-image">
+      <form class="form" name="add-image" novalidate>
         <fieldset class="form__set">
-          <input type="text" class="form__input form__input_type_place" placeholder="Название" value="" id="place" required>
-          <span class="form__input-error">Вы пропустили это поле</span>
-          <input type="text" class="form__input form__input_type_link" placeholder="Ссылка на картинку" value="" id="link" required>
-          <span class="form__input-error">Введите адрес сайта</span>
-          <button class="button button_type_save" value="Создать" id="button-add">Создать</button>
+          <input 
+            type="text"
+            class="form__input form__input_type_place"
+            placeholder="Название"
+            value=""
+            id="input-place"
+            minlength="2"
+            maxlength="30"
+            required>
+          <span class="form__input-error input-place-error"></span>
         </fieldset>
+
+        <fieldset class="form__set">
+          <input
+            type="url"
+            class="form__input form__input_type_link"
+            placeholder="Ссылка на картинку"
+            value=""
+            id="input-link"
+            required>
+          <span class="form__input-error input-link-error"></span>
+        </fieldset>
+        <button class="button button_type_save" value="Создать" id="button-add">Создать</button>
       </form>
     </div>
 </div>
@@ -87,8 +123,6 @@
   </template>
 
   <script src="./sciprts/script.js"></script>
+  <script src="./sciprts/validate.js"></script>
 </body>
-
-
-
 </html>

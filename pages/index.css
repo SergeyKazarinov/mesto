@@ -6,12 +6,13 @@
 /* form */
 @import url(../blocks/form/form.css);
 @import url(../blocks/form/__input/form__input.css);
-@import url(../blocks/form/__input/form__set.css);
 @import url(../blocks/form/__input/_type/form__input_type_name.css);
 @import url(../blocks/form/__input/_type/form__input_type_job.css);
 @import url(../blocks/form/__input/_type/form__input_type_place.css);
 @import url(../blocks/form/__input/_type/form__input_type_error.css);
 @import url(../blocks/form/__input-error/form__input-error.css);
+@import url(../blocks/form/__input-error/_active/form__input-error_active.css);
+@import url(../blocks/form/__set/form__set.css);
 
 /* button */
 @import url(../blocks/button/button.css);
@@ -23,6 +24,7 @@
 @import url(../blocks/button/_type/button_type_save.css);
 @import url(../blocks/button/_type/button_type_remove.css);
 @import url(../blocks/button/_type/button_type_card.css);
+@import url(../blocks/button/_inactive/button_inactive.css);
 
 /* header*/
 @import url(../blocks/header/header.css);

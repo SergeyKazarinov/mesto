@@ -6,6 +6,8 @@ const popupAddImage = document.querySelector ('.popup_type_add-image');
 /** кнопки */
 const popupEditOpenBtn = document.querySelector ('.button_type_edit');
 const popupAddImageOpenBtn = document.querySelector ('.button_type_add');
+const submitBtnSaveAddImage = popupAddImage.querySelector('.button_type_save');
+const submitBtnSaveEditProfile = popupEditProfile.querySelector('.button_type_save');
 /** поля и формы */
 const nameInput = document.querySelector ('.form__input_type_name');
 const jobInput = document.querySelector ('.form__input_type_job');
@@ -55,29 +57,37 @@ const fillForm = () => {
 /** функция открытия попапа */
 const openPopup = popup => {
 	popup.classList.add('popup_opened');
+  document.addEventListener('keydown', closePopupEsc);
 }
 
 /** функция закрытия попапа */
 const closePopup = popup => {
-    popup.classList.remove('popup_opened');
+  popup.classList.remove('popup_opened');
+  document.removeEventListener('keydown', closePopupEsc);
 }
 
+/** функция закрытия попапа при клике на любую область */
 const closePopupOverlay = () => {
   const popupList = Array.from(document.querySelectorAll('.popup'));
 
   popupList.forEach(popupElement => {
-    popupElement.addEventListener('click', event => {
-      if(!event.target.closest('.popup__container') || event.target.closest('.button_type_close')) {
+    popupElement.addEventListener('mousedown', event => {
+      if((!event.target.closest('.popup__container') && !event.target.closest('.popup__container-image')) || event.target.closest('.button_type_close')) {
         closePopup(popupElement);
       }
     });
   });
+}
 
-  popupList.forEach(popupElement => {
-    popupElement.addEventListener('keydown', event => {
-      console.log(event);
-    });
-  });
+/** Вызов функции закрытия попапа */
+closePopupOverlay();
+
+/** функция закрытия попапа по нажатию esc */
+const closePopupEsc = event => {
+  const popupOpened = document.querySelector('.popup_opened');
+  if(event.key === "Escape") {
+    closePopup(popupOpened);
+  }
 }
 
 /** Удаление карточки */
@@ -132,18 +142,25 @@ const renderCardPrepend = (wrap, name, link) => {
 	wrap.prepend(createCard({name, link}));
 }
 
-const addCard = evt => {
+const addCardSubmitHandler = evt => {
   evt.preventDefault();
 	renderCardPrepend(newCard, placeInput.value, linkInput.value);
 	formAddImage.reset();
 	closePopup(popupAddImage);
 }
+/** Функция делает кнопку отправки формы не активной */
+const inactiveSubmitButton = (buttonSave) => {
+  buttonSave.disabled = true;
+  buttonSave.classList.add('button_inactive');
+}
 
-/** Вызов функции закрытия попапа */
-closePopupOverlay();
+/** Функция делает кнопку отправки формы активной */
+const activeSubmitButton = (buttonSave) => {
+  buttonSave.disabled = false;
+  buttonSave.classList.remove('button_inactive');
+}
 
-/** Обработчик «отправки» формы, хотя пока
-она никуда отправляться не будет */
+/** Обработчик «отправки» формы*/
 function formEditProfileSubmitHandler (evt) {
     evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
 
@@ -156,16 +173,19 @@ function formEditProfileSubmitHandler (evt) {
 /** событие открытия попапа редактирования профиля */
 popupEditOpenBtn.addEventListener ('click', () => {
 	fillForm();
+  activeSubmitButton(submitBtnSaveEditProfile);
 	openPopup(popupEditProfile);
 });
 
 /** событие открытия попапа добавления картинки */
 popupAddImageOpenBtn.addEventListener('click', () => {
+  formAddImage.reset();
+  inactiveSubmitButton(submitBtnSaveAddImage);
 	openPopup(popupAddImage);
 });
 
 /** событие отправки формы с именем */
 formProfileEdit.addEventListener('submit', formEditProfileSubmitHandler);
 
-/** событие добавление картинки на сайт */
-formAddImage.addEventListener('submit', addCard);
+/** событие отправки формы добавления картинки на сайт */
+formAddImage.addEventListener('submit', addCardSubmitHandler);
