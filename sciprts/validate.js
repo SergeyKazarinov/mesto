@@ -61,6 +61,18 @@ const toggleButtonState = (inputList, buttonElement, inactiveButtonClass) => {
   }
 };
 
+/** Функция делает кнопку отправки формы не активной */
+const inactiveSubmitButton = (buttonSave) => {
+  buttonSave.disabled = true;
+  buttonSave.classList.add('button_inactive');
+}
+
+/** Функция делает кнопку отправки формы активной */
+const activeSubmitButton = (buttonSave) => {
+  buttonSave.disabled = false;
+  buttonSave.classList.remove('button_inactive');
+}
+
 /** Функция добавления событий для всех форм */
 const setEventListener = (formElement, valid) => {
   const {inputSelector,
