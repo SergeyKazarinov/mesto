@@ -18,36 +18,7 @@ const formProfileEdit = document.querySelector('form[name=profile-edit');
 const formAddImage = document.querySelector('form[name=add-image');
 const placeInput = document.querySelector ('.form__input_type_place');
 const linkInput = document.querySelector ('.form__input_type_link');
-/** template и блок для вставки */
-const cardTemplate = document.querySelector('#cards').content;
-const newCard = document.querySelector('.elements__grid');
-/** массив для заполнения страницы 6 фотографиями */
-const initialCards = [
-  {
-    name: 'Скала у берега',
-    link: './images/Image1.jpg'
-  },
-  {
-    name: 'Причал',
-    link: './images/Image2.jpg'
-  },
-  {
-    name: 'Ночной маяк',
-    link: './images/Image3.jpg'
-  },
-  {
-    name: 'Водопад',
-    link: './images/Image4.jpg'
-  },
-  {
-    name: 'Зимний берег',
-    link: './images/Image5.jpg'
-  },
-  {
-    name: 'Котейка',
-    link: './images/Image6.jpg'
-  }
-];
+
 
 /** функция заполнения форм редактирования */
 const fillForm = () => {
@@ -107,24 +78,24 @@ const removeImage = evt => {
   evt.target.closest('.card').remove();
 }
 
-/** лайк */
-const like = event => {
-	event.target.classList.toggle('button_type_like-active');
-}
+// /** лайк */
+// const like = event => {
+// 	event.target.classList.toggle('button_type_like-active');
+// }
 
 /** функция заполяет карточки данными */
 const createCard = (cardData) => {
-	const cardElement = cardTemplate.querySelector('.card').cloneNode(true);
-	const cardImage = cardElement.querySelector('.card__image');
-	const cardText = cardElement.querySelector('.card__text');
+	// const cardElement = cardTemplate.querySelector('.card').cloneNode(true);
+	// const cardImage = cardElement.querySelector('.card__image');
+	// const cardText = cardElement.querySelector('.card__text');
 
-	cardImage.src = cardData.link;
-	cardImage.alt = cardData.name;
-	cardText.textContent = cardData.name;
+	// cardImage.src = cardData.link;
+	// cardImage.alt = cardData.name;
+	// cardText.textContent = cardData.name;
 
-	cardElement.querySelector('.button_type_like').addEventListener ('click', like); //лайк
-	cardElement.querySelector('.button_type_remove').addEventListener('click', removeImage); //Удаление картинки
-	cardElement.querySelector('.button_type_card').addEventListener('click', () => openPopupImage(cardData.link, cardData.name)); //открытие картинки
+	  // cardElement.querySelector('.button_type_like').addEventListener ('click', like); //лайк
+	  // cardElement.querySelector('.button_type_remove').addEventListener('click', removeImage); //Удаление картинки
+	  // cardElement.querySelector('.button_type_card').addEventListener('click', () => openPopupImage(cardData.link, cardData.name)); //открытие картинки
 
 	return cardElement;
 }
