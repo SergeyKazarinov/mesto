@@ -1,60 +1,36 @@
-/** template и блок для вставки */
+import { openPopupImage } from "./script.js";
 
-const newCard = document.querySelector('.elements__grid');
-const buttonLike = document.querySelector('.button_type_like');
-
-/** массив для заполнения страницы 6 фотографиями */
-const initialCards = [
-  {
-    name: 'Скала у берега',
-    link: './images/Image1.jpg'
-  },
-  {
-    name: 'Причал',
-    link: './images/Image2.jpg'
-  },
-  {
-    name: 'Ночной маяк',
-    link: './images/Image3.jpg'
-  },
-  {
-    name: 'Водопад',
-    link: './images/Image4.jpg'
-  },
-  {
-    name: 'Зимний берег',
-    link: './images/Image5.jpg'
-  },
-  {
-    name: 'Котейка',
-    link: './images/Image6.jpg'
-  }
-];
-
-class Card {
-  constructor(data, cardSelector) {
-    this._name = data.name;
-    this._link = data.link;
+export class Card {
+  constructor(name, link, cardSelector) {
+    this._name = name;
+    this._link = link;
     this.__cardSelector = cardSelector;
   }
 
-
+  /** Создание template */
   _getTemplate() {
-    const cardTemplate = document.querySelector('#cards').content.querySelector('.card').cloneNode(true)
+    const cardTemplate = document.getElementById('cards').content.querySelector('.card').cloneNode(true)
   
     return cardTemplate;
   }
-
+  /** лайк */
   _like() {
     this._element.querySelector('.button_type_like').classList.toggle('button_type_like-active');
   }
+  /** Удаление карточки */
+  _removeImage() {
+    this._element.closest('.card').remove();
+  }
+
+  /** открытие попап с картинкой */
+  _openPopupImage() {
+    openPopupImage(this._link, this._name);
+  }
 
   _setEventListeners() {
-    this._element.querySelector('.button_type_like').addEventListener ('click', ()=> {
-      this._like();
-    }); //лайк
-	  // this._element.querySelector('.button_type_remove').addEventListener('click', removeImage); //Удаление картинки
-	  // this._element.querySelector('.button_type_card').addEventListener('click', () => openPopupImage(cardData.link, cardData.name)); //открытие картинки
+    this._element.querySelector('.button_type_like').addEventListener ('click', () => this._like()); //лайк
+    this._element.querySelector('.button_type_remove').addEventListener('click', () => this._removeImage()); //Удаление картинки
+    this._element.querySelector('.button_type_card').addEventListener('click', () => this._openPopupImage()); //открытие картинки
   }
 
   generateCard() {
@@ -68,11 +44,4 @@ class Card {
     return this._element;
   }
 }
-
-initialCards.forEach(item => {
-  const card = new Card(item, newCard);
-  const cardElement = card.generateCard();
-
-  newCard.append(cardElement);
-});
 

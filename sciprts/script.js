@@ -1,9 +1,10 @@
+import { Card } from "./card.js";
+
 /** модальные окна */
 const popupList = Array.from(document.querySelectorAll('.popup'));
-const popupContainer = document.querySelector ('.popup');
-const popupImageZoom = document.querySelector ('.popup_type_image-zoom');
 const popupEditProfile = document.querySelector ('.popup_type_edit-profile');
 const popupAddImage = document.querySelector ('.popup_type_add-image');
+const popupImageZoom = document.querySelector ('.popup_type_image-zoom');
 /** кнопки */
 const popupEditOpenBtn = document.querySelector ('.button_type_edit');
 const popupAddImageOpenBtn = document.querySelector ('.button_type_add');
@@ -19,6 +20,37 @@ const formAddImage = document.querySelector('form[name=add-image');
 const placeInput = document.querySelector ('.form__input_type_place');
 const linkInput = document.querySelector ('.form__input_type_link');
 
+/** template и блок для вставки */
+const newCard = document.querySelector('.elements__grid');
+
+/** массив для заполнения страницы 6 фотографиями */
+const initialCards = [
+  {
+    name: 'Скала у берега',
+    link: './images/Image1.jpg'
+  },
+  {
+    name: 'Причал',
+    link: './images/Image2.jpg'
+  },
+  {
+    name: 'Ночной маяк',
+    link: './images/Image3.jpg'
+  },
+  {
+    name: 'Водопад',
+    link: './images/Image4.jpg'
+  },
+  {
+    name: 'Зимний берег',
+    link: './images/Image5.jpg'
+  },
+  {
+    name: 'Котейка',
+    link: './images/Image6.jpg'
+  }
+];
+
 
 /** функция заполнения форм редактирования */
 const fillForm = () => {
@@ -27,16 +59,15 @@ const fillForm = () => {
 }
 
 /** функция открытия попапа */
-const openPopup = popup => {
+export const openPopup = popup => {
 	popup.classList.add('popup_opened');
   document.addEventListener('keydown', closePopupEsc);
 }
 
 /** открытие попап с картинкой */
-const openPopupImage = (linkImage, altImage) => {
-	const image = popupImageZoom.querySelector('.popup__image');
-	image.src = linkImage;
-	image.alt = altImage;
+export const openPopupImage = (linkImage, altImage) => {
+	popupImageZoom.querySelector('.popup__image').src = linkImage;
+	popupImageZoom.querySelector('.popup__image').alt = altImage;
 	popupImageZoom.querySelector('.popup__text').textContent = altImage;
 
 	openPopup(popupImageZoom);
@@ -73,51 +104,12 @@ const closePopupEsc = event => {
   }
 }
 
-/** Удаление карточки */
-const removeImage = evt => {
-  evt.target.closest('.card').remove();
-}
-
-// /** лайк */
-// const like = event => {
-// 	event.target.classList.toggle('button_type_like-active');
-// }
-
-/** функция заполяет карточки данными */
-const createCard = (cardData) => {
-	// const cardElement = cardTemplate.querySelector('.card').cloneNode(true);
-	// const cardImage = cardElement.querySelector('.card__image');
-	// const cardText = cardElement.querySelector('.card__text');
-
-	// cardImage.src = cardData.link;
-	// cardImage.alt = cardData.name;
-	// cardText.textContent = cardData.name;
-
-	  // cardElement.querySelector('.button_type_like').addEventListener ('click', like); //лайк
-	  // cardElement.querySelector('.button_type_remove').addEventListener('click', removeImage); //Удаление картинки
-	  // cardElement.querySelector('.button_type_card').addEventListener('click', () => openPopupImage(cardData.link, cardData.name)); //открытие картинки
-
-	return cardElement;
-}
-
-/** функция добавления карточки в контейнер */
-const renderCardAppend = (wrap, name, link) => {
-	wrap.append(createCard({name, link}));
-}
-
-/** заполнение сайта шестью карточками */
-initialCards.forEach((item) => {
-  renderCardAppend(newCard, item.name, item.link);
-})
-
-/** Добавление картинки */
-const renderCardPrepend = (wrap, name, link) => {
-	wrap.prepend(createCard({name, link}));
-}
-
 const addCardSubmitHandler = evt => {
   evt.preventDefault();
-	renderCardPrepend(newCard, placeInput.value, linkInput.value);
+  const card = new Card(placeInput.value, linkInput.value, newCard);
+  const cardElement = card.generateCard();
+
+  newCard.prepend(cardElement);
 	formAddImage.reset();
 	closePopup(popupAddImage);
 }
@@ -151,3 +143,11 @@ formProfileEdit.addEventListener('submit', formEditProfileSubmitHandler);
 
 /** событие отправки формы добавления картинки на сайт */
 formAddImage.addEventListener('submit', addCardSubmitHandler);
+
+
+initialCards.forEach(item => {
+  const card = new Card(item.name, item.link, newCard);
+  const cardElement = card.generateCard();
+
+  newCard.append(cardElement);
+});
