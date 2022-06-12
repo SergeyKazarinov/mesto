@@ -1,4 +1,5 @@
 import { Card } from "./card.js";
+import { FormValidator } from "./FormValidator.js";
 
 /** модальные окна */
 const popupList = Array.from(document.querySelectorAll('.popup'));
@@ -50,6 +51,21 @@ const initialCards = [
     link: './images/Image6.jpg'
   }
 ];
+/** Валидация */
+const validConfig = {
+  formSelector: '.form',
+  inputSelector: '.form__input',
+  submitButtonSelector: '.button_type_save',
+  inactiveButtonClass: 'button_inactive',
+  inputErrorClass: 'form__input_type_error',
+  errorClass: 'form__input-error_active'
+};
+
+const popupEditProfileValidator = new FormValidator(validConfig, popupEditProfile);
+popupEditProfileValidator.enableValidation();
+
+const popupAddImageValidator = new FormValidator(validConfig, popupAddImage);
+popupAddImageValidator.enableValidation();
 
 
 /** функция заполнения форм редактирования */
@@ -76,6 +92,8 @@ export const openPopupImage = (linkImage, altImage) => {
 /** функция закрытия попапа */
 const closePopup = popup => {
   popup.classList.remove('popup_opened');
+  popupEditProfileValidator.deleteInputErros();
+  popupAddImageValidator.deleteInputErros();
   document.removeEventListener('keydown', closePopupEsc);
 }
 
@@ -112,6 +130,18 @@ const addCardSubmitHandler = evt => {
   newCard.prepend(cardElement);
 	formAddImage.reset();
 	closePopup(popupAddImage);
+}
+
+/** Функция делает кнопку отправки формы не активной */
+const inactiveSubmitButton = (buttonSave) => {
+  buttonSave.disabled = true;
+  buttonSave.classList.add('button_inactive');
+}
+
+/** Функция делает кнопку отправки формы активной */
+const activeSubmitButton = (buttonSave) => {
+  buttonSave.disabled = false;
+  buttonSave.classList.remove('button_inactive');
 }
 
 /** Обработчик «отправки» формы*/

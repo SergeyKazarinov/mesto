@@ -10,13 +10,14 @@ export class Card {
   /** Создание template */
   _getTemplate() {
     const cardTemplate = document.getElementById('cards').content.querySelector('.card').cloneNode(true)
-  
     return cardTemplate;
   }
+
   /** лайк */
   _like() {
     this._element.querySelector('.button_type_like').classList.toggle('button_type_like-active');
   }
+
   /** Удаление карточки */
   _removeImage() {
     this._element.closest('.card').remove();
@@ -40,8 +41,7 @@ export class Card {
     this._element.querySelector('.card__image').src = this._link;
     this._element.querySelector('.card__image').alt = this._link;
     this._element.querySelector('.card__text').textContent = this._name;
-    
+
     return this._element;
   }
 }
-
