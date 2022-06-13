@@ -1,21 +1,20 @@
-import { openPopupImage } from "./script.js";
-
 export class Card {
-  constructor(name, link, cardSelector) {
+  constructor(name, link, cardSelector, openPopupImage) {
     this._name = name;
     this._link = link;
     this.__cardSelector = cardSelector;
+    this._openPopupImage = openPopupImage;
   }
 
   /** Создание template */
   _getTemplate() {
-    const cardTemplate = document.getElementById('cards').content.querySelector('.card').cloneNode(true)
+    const cardTemplate = this.__cardSelector.cloneNode(true)
     return cardTemplate;
   }
 
   /** лайк */
   _like() {
-    this._element.querySelector('.button_type_like').classList.toggle('button_type_like-active');
+    this._likeButton.classList.toggle('button_type_like-active');
   }
 
   /** Удаление карточки */
@@ -23,23 +22,22 @@ export class Card {
     this._element.closest('.card').remove();
   }
 
-  /** открытие попап с картинкой */
-  _openPopupImage() {
-    openPopupImage(this._link, this._name);
-  }
-
   _setEventListeners() {
-    this._element.querySelector('.button_type_like').addEventListener ('click', () => this._like()); //лайк
+    this._likeButton = this._element.querySelector('.button_type_like');
+
+    this._likeButton.addEventListener ('click', () => this._like()); //лайк
     this._element.querySelector('.button_type_remove').addEventListener('click', () => this._removeImage()); //Удаление картинки
-    this._element.querySelector('.button_type_card').addEventListener('click', () => this._openPopupImage()); //открытие картинки
+    this._element.querySelector('.button_type_card').addEventListener('click', () => this._openPopupImage(this._link, this._name)); //открытие картинки
   }
 
   generateCard() {
     this._element = this._getTemplate();
+    this._cardImage = this._element.querySelector('.card__image');
+    
     this._setEventListeners();
-
-    this._element.querySelector('.card__image').src = this._link;
-    this._element.querySelector('.card__image').alt = this._link;
+    
+    this._cardImage.src = this._link;
+    this._cardImage.alt = this._name;
     this._element.querySelector('.card__text').textContent = this._name;
 
     return this._element;
