@@ -115,8 +115,8 @@ closePopupOverlay();
 
 /** функция закрытия попапа по нажатию esc */
 const closePopupEsc = event => {
-  const popupOpened = document.querySelector('.popup_opened');
   if(event.key === "Escape") {
+    const popupOpened = document.querySelector('.popup_opened');
     closePopup(popupOpened);
   }
 }
