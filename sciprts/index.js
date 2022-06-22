@@ -1,3 +1,4 @@
+import Section from "./Section.js";
 import { Card } from "./card.js";
 import { FormValidator } from "./FormValidator.js";
 
