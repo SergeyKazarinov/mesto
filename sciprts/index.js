@@ -1,69 +1,28 @@
 import Section from "./Section.js";
 import { Card } from "./Card.js";
 import { FormValidator } from "./FormValidator.js";
-
-/** модальные окна */
-const popupList = Array.from(document.querySelectorAll('.popup'));
-const popupEditProfile = document.querySelector ('.popup_type_edit-profile');
-const popupAddImage = document.querySelector ('.popup_type_add-image');
-const popupImageZoom = document.querySelector ('.popup_type_image-zoom');
-const popupImage = popupImageZoom.querySelector('.popup__image');
-const popupText = popupImageZoom.querySelector('.popup__text');
-/** кнопки */
-const popupEditOpenBtn = document.querySelector ('.button_type_edit');
-const popupAddImageOpenBtn = document.querySelector ('.button_type_add');
-/** поля и формы */
-const nameInput = document.querySelector ('.form__input_type_name');
-const jobInput = document.querySelector ('.form__input_type_job');
-const profileName = document.querySelector ('.profile__name');
-const profileJob = document.querySelector ('.profile__job');
-const formProfileEdit = document.querySelector('form[name=profile-edit');
-const formAddImage = document.querySelector('form[name=add-image');
-const placeInput = document.querySelector ('.form__input_type_place');
-const linkInput = document.querySelector ('.form__input_type_link');
-
-/** template и блок для вставки */
-const newCard = document.querySelector('.elements__grid');
-const cardSelector = document.getElementById('cards').content.querySelector('.card');
-
-/** массив для заполнения страницы 6 фотографиями */
-const initialCards = [
-  {
-    name: 'Скала у берега',
-    link: './images/Image1.jpg'
-  },
-  {
-    name: 'Причал',
-    link: './images/Image2.jpg'
-  },
-  {
-    name: 'Ночной маяк',
-    link: './images/Image3.jpg'
-  },
-  {
-    name: 'Водопад',
-    link: './images/Image4.jpg'
-  },
-  {
-    name: 'Зимний берег',
-    link: './images/Image5.jpg'
-  },
-  {
-    name: 'Котейка',
-    link: './images/Image6.jpg'
-  }
-];
-/** Валидация */
-const validConfig = {
-  formSelector: '.form',
-  inputSelector: '.form__input',
-  submitButtonSelector: '.button_type_save',
-  inactiveButtonClass: 'button_inactive',
-  inputErrorClass: 'form__input_type_error',
-  errorClass: 'form__input-error_active'
-};
-
-const formValidators = {};
+import {popupList,
+  popupEditProfile,
+  popupAddImage,
+  popupImageZoom,
+  popupImage,
+  popupText,
+  popupEditOpenBtn,
+  popupAddImageOpenBtn,
+  nameInput,
+  jobInput,
+  profileName,
+  profileJob,
+  formProfileEdit,
+  formAddImage,
+  placeInput,
+  linkInput,
+  newCard,
+  cardSelector,
+  initialCards,
+  validConfig,
+  formValidators
+} from "./constants.js";
 
 Array.from(document.forms).forEach(formElement => {
   formValidators[formElement.name] = new FormValidator(validConfig, formElement);
