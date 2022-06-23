@@ -1,5 +1,5 @@
 import Section from "./Section.js";
-import { Card } from "./card.js";
+import { Card } from "./Card.js";
 import { FormValidator } from "./FormValidator.js";
 
 /** модальные окна */
@@ -122,17 +122,29 @@ const closePopupEsc = event => {
   }
 }
 
-/**Функция создания карточки */
-const createCard = (name, link, cardSelector, openPopupImage) => {
-  const card = new Card(name, link, cardSelector, openPopupImage);
-  const cardElement = card.generateCard();
-  return cardElement;
-}
+const createCard = new Section ({
+  items: initialCards,
+  renderer: (item) => {
+    const card = new Card({item}, cardSelector, openPopupImage);
+    const cardElement = card.generateCard();
+    createCard.addItem(cardElement);
+  }
+}, newCard)
 
 const addCardSubmitHandler = evt => {
   evt.preventDefault();
+  
+  const addCard = new Section ({
+    items: [{name: placeInput.value, link: linkInput.value}],
+    renderer: (item) => {
+      const card = new Card({item}, cardSelector, openPopupImage);
+      const cardElement = card.generateCard();
+      addCard.addItem(cardElement);
+    }
+  }, newCard);
 
-  newCard.prepend(createCard(placeInput.value, linkInput.value, cardSelector, openPopupImage));
+  addCard.renderer();
+
 	formAddImage.reset();
 	closePopup(popupAddImage);
 }
@@ -169,7 +181,4 @@ formProfileEdit.addEventListener('submit', handleProfileFormSubmit);
 /** событие отправки формы добавления картинки на сайт */
 formAddImage.addEventListener('submit', addCardSubmitHandler);
 
-
-initialCards.forEach(item => {
-  newCard.append(createCard(item.name, item.link, cardSelector, openPopupImage));
-});
+createCard.renderer();

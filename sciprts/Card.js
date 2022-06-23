@@ -1,7 +1,7 @@
 export class Card {
-  constructor(name, link, cardSelector, openPopupImage) {
-    this._name = name;
-    this._link = link;
+  constructor({item}, cardSelector, openPopupImage) {
+    this._name = item.name;
+    this._link = item.link;
     this.__cardSelector = cardSelector;
     this._openPopupImage = openPopupImage;
   }
@@ -31,15 +31,14 @@ export class Card {
   }
 
   generateCard() {
+    
     this._element = this._getTemplate();
     this._cardImage = this._element.querySelector('.card__image');
-    
     this._setEventListeners();
     
     this._cardImage.src = this._link;
     this._cardImage.alt = this._name;
     this._element.querySelector('.card__text').textContent = this._name;
-
     return this._element;
   }
 }
