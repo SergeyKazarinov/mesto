@@ -1,3 +1,6 @@
+import { PopupWithImage } from "./PopupWithImage.js";
+import { popupImageZoom } from "./constants.js";
+
 export class Card {
   constructor({item}, cardSelector, openPopupImage) {
     this._name = item.name;
@@ -27,7 +30,10 @@ export class Card {
 
     this._likeButton.addEventListener ('click', () => this._like()); //лайк
     this._element.querySelector('.button_type_remove').addEventListener('click', () => this._removeImage()); //Удаление картинки
-    this._element.querySelector('.button_type_card').addEventListener('click', () => this._openPopupImage(this._link, this._name)); //открытие картинки
+    this._element.querySelector('.button_type_card').addEventListener('click', () => {
+      const popupOpen = new PopupWithImage (popupImageZoom, this._link, this._name);
+      popupOpen.open();
+    }); //открытие картинки
   }
 
   generateCard() {

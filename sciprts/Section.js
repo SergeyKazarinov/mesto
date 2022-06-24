@@ -10,7 +10,6 @@ export default class Section {
   }
 
   renderer() {
-    console.log(this._items)
     this._items.forEach(item => {
       this._renderer(item);
     });

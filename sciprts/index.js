@@ -1,6 +1,9 @@
 import Section from "./Section.js";
 import { Card } from "./Card.js";
 import { FormValidator } from "./FormValidator.js";
+import Popup from "./Popup.js";
+import { PopupWithImage } from "./PopupWithImage.js";
+
 import {popupList,
   popupEditProfile,
   popupAddImage,
@@ -77,7 +80,7 @@ closePopupOverlay();
 const closePopupEsc = event => {
   if(event.key === "Escape") {
     const popupOpened = document.querySelector('.popup_opened');
-    closePopup(popupOpened);
+    popupOpened.closes();
   }
 }
 
@@ -87,6 +90,8 @@ const createCard = new Section ({
     const card = new Card({item}, cardSelector, openPopupImage);
     const cardElement = card.generateCard();
     createCard.addItem(cardElement);
+    // const popupImage = new PopupWithImage(popupImageZoom, {item});
+    // popupImage.open();
   }
 }, newCard)
 
@@ -124,6 +129,8 @@ popupEditOpenBtn.addEventListener ('click', () => {
   formValidators[formProfileEdit.name].activeSubmitButton();
   formValidators[formProfileEdit.name].deleteInputError();
 	openPopup(popupEditProfile);
+  // const open = new Popup(popupEditProfile);
+  // open.open();
 });
 
 /** событие открытия попапа добавления картинки */
@@ -131,7 +138,9 @@ popupAddImageOpenBtn.addEventListener('click', () => {
   formAddImage.reset();
   formValidators[formAddImage.name].inactiveSubmitButton();
   formValidators[formAddImage.name].deleteInputError();
-	openPopup(popupAddImage);
+	// openPopup(popupAddImage);
+  const open = new Popup(popupAddImage);
+  open.open();
 });
 
 /** событие отправки формы с именем */
