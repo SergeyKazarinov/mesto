@@ -3,9 +3,9 @@ export default class Popup {
     console.log(`popupSelector: "${popupSelector}", \npopupConfig: "${popupConfig}"`);
     this._popupSelector = popupSelector;
     this._activeModifier = popupConfig.activeModifier;
-    
     this._closeBtnSelector = popupConfig.closeBtnSelector;
-    
+    this._popup = document.querySelector(`.${this._popupSelector}`);
+    this._closeBtn = this._popup.querySelector(`.${this._closeBtnSelector}`);
   }
 
   _handleEscClose = (event) => {
@@ -25,8 +25,7 @@ export default class Popup {
   }
 
   setEventListeners() {
-    this._popup = document.querySelector(`.${this._popupSelector}`);
-    this._closeBtn = this._popup.querySelector(`.${this._closeBtnSelector}`);
+
     this._popup.addEventListener('mousedown', this._handleCLoseOverlayClick);
     this._closeBtn.addEventListener('click', this._handleCLoseBtnClick);
   }

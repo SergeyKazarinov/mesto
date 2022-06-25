@@ -40,7 +40,7 @@ export class PopupWithForm extends Popup {
     this._formElement.addEventListener('submit', this._handleSubmit);
   }
 
-  open() {
+  open = () => {
     if(this._getterCallBack) {
       this._setInputValues(this._getterCallBack());
     } else {

@@ -1,6 +1,3 @@
-import { PopupWithImage } from "./PopupWithImage.js";
-import { popupImageZoom } from "./constants.js";
-
 export class Card {
   constructor({item}, cardSelector, openPopupImage) {
     this._name = item.name;
