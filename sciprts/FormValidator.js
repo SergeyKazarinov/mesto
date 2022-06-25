@@ -22,7 +22,7 @@ export class FormValidator {
   /** Метод удаления ошибки валидации и подчеркивания */
   _hideInputError (inputElement) {
     const errorElement = this._formElement.querySelector(`.${inputElement.id}-error`);
-
+    console.dir(errorElement);
     inputElement.classList.remove(this._inputErrorClass);
     errorElement.textContent = '';
     errorElement.classList.remove(this._errorClass);
@@ -85,15 +85,18 @@ export class FormValidator {
   };
 
   /**Метод очищает сообщение об ошибке и стилизацию инпутов */
-  deleteInputError() {
+  deleteInputError = () => {
+    console.dir(this);
     this._inputList.forEach(inputElement => {
+      console.dir(inputElement);
+      console.dir(this._hideInputError);
       this._hideInputError(inputElement);
     })
     this._toggleButtonState();
   };
 
   /** Метод включение валидации форм */
-  enableValidation() {
+  enableValidation = () => {
     this._setEventListener();
   };
 }

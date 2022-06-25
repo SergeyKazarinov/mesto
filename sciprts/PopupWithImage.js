@@ -1,19 +1,24 @@
 import Popup from "./Popup.js";
-import { popupImage, popupText } from "./constants.js";
 
 export class PopupWithImage extends Popup {
-  constructor(cardSelector, link, name) {
-    super(cardSelector);
-    this._popupImage = popupImage;
-    this._popupText = popupText;
-    this._link = link;
-    this._name = name;
+  constructor(popupSelector, popupConfig, {imageSelector, captionSelector}) {
+    console.log(`popupSelector: "${popupSelector}", \nimageSelector "${imageSelector}", \ncaptionSelector "${captionSelector}", \npopupConfig: `);
+    console.dir(popupConfig);
+    super(popupSelector, popupConfig);
+    this._imageSelector = imageSelector;
+    this._captionSelector = captionSelector;
+    this._imageElement = document.querySelector(`.${this._imageSelector}`);
+    this._captionElement = document.querySelector(`.${this._captionSelector}`);
+    console.dir(this._imageElement);
+    console.dir(this._captionElement);
   }
 
-  open() {
-    this._popupImage.src = this._link;
-    this._popupImage.alt = this._name;
-    this._popupText.textContent = this._name;
+  open = ({name, link}) => {
+    console.log(`name: "${name}", link: "${link}", \nthis:`);
+    console.dir(this);
+    this._imageElement.src = link;
+    this._imageElement.alt = name;
+    this._captionElement.textContent = name;
     super.open();
   }
 }

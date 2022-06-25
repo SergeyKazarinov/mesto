@@ -60,3 +60,31 @@ export const validConfig = {
 };
 
 export const formValidators = {};
+
+export const formConfiguration = {
+  inputSelector: 'form__input',
+  submitBtnSelector: 'button_type_save',
+  formSelector: 'form',
+}
+
+export const popupConfiguration = {
+  activeModifier: 'popup_opened',
+  closeBtnSelector: 'button_type_close',
+}
+
+export const profileConfiguration = {
+  titleSelector: 'profile__name', 
+  jobSelector: 'profile__job',
+}
+
+export const viewPopupConfiguration = {
+  imageSelector: 'popup__image',
+  captionSelector: 'popup__text',
+}
+
+export const cardsContainerSelector = 'elements__grid';
+export const newPlacePopupSelector = 'popup_type_add-image';
+export const profilePopupSelector = 'popup_type_edit-profile';
+export const imagePopupSelector = 'popup_type_image-zoom';
+export const newPlaceFormName = 'add-image';
+export const profileFormName = 'profile-edit';

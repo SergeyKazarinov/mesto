@@ -16,24 +16,25 @@ export class Card {
   }
 
   /** лайк */
-  _like() {
+  _like = () => {
     this._likeButton.classList.toggle('button_type_like-active');
   }
 
   /** Удаление карточки */
-  _removeImage() {
-    this._element.closest('.card').remove();
+  _removeImage = () => {
+    this._element.remove();
+  }
+
+  _handleImageClick = () => {
+    this._openPopupImage({name: this._name, link: this._link});
   }
 
   _setEventListeners() {
     this._likeButton = this._element.querySelector('.button_type_like');
 
-    this._likeButton.addEventListener ('click', () => this._like()); //лайк
-    this._element.querySelector('.button_type_remove').addEventListener('click', () => this._removeImage()); //Удаление картинки
-    this._element.querySelector('.button_type_card').addEventListener('click', () => {
-      const popupOpen = new PopupWithImage (popupImageZoom, this._link, this._name);
-      popupOpen.open();
-    }); //открытие картинки
+    this._likeButton.addEventListener ('click', this._like); //лайк
+    this._element.querySelector('.button_type_remove').addEventListener('click', this._removeImage); //Удаление картинки
+    this._element.querySelector('.button_type_card').addEventListener('click', this._handleImageClick); //открытие картинки
   }
 
   generateCard() {
