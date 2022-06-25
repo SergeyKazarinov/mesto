@@ -13,7 +13,7 @@ export class PopupWithImage extends Popup {
     console.dir(this._captionElement);
   }
 
-  open = ({name, link}) => {
+  open({name, link}) {
     console.log(`name: "${name}", link: "${link}", \nthis:`);
     console.dir(this);
     this._imageElement.src = link;

@@ -103,7 +103,7 @@ const cardsContainer = new Section({
   renderer: createCard,
 }, cardsContainerSelector);
 
-cardsContainer.rendererAll();
+cardsContainer.rendereAll();
 
 const handleCardSubmit = (item) => {
   cardsContainer.addItem(item);

@@ -11,8 +11,8 @@ export class UserInfo {
 
   setUserInfo = (data) => {
     console.dir(data);
-    this._titleElement.textContent = data?.title || '';
-    this._jobElement.textContent = data?.job || '';
+    this._titleElement.textContent = data.title || '';
+    this._jobElement.textContent = data.job || '';
   }
 
   getUserInfo = () => {
