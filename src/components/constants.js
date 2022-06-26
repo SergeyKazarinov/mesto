@@ -1,35 +1,49 @@
-/** кнопки */
+const rockOfTheCoast = new URL('.././images/Image1.jpg', import.meta.url);
+const jetty = new URL('.././images/Image2.jpg', import.meta.url);
+const nightBeacon = new URL('.././images/Image3.jpg', import.meta.url);
+const waterfall = new URL('.././images/Image4.jpg', import.meta.url);
+const winterCoast = new URL('.././images/Image5.jpg', import.meta.url);
+const cat = new URL('.././images/Image6.jpg', import.meta.url);
+
+/**кнопки
+ * @const popupEditOpenBtn - кнопка открытия попапа редактирования профиля
+ */
 export const popupEditOpenBtn = document.querySelector ('.button_type_edit');
+/**
+ * @const popupAddImageOpenBtn - кнопка открытия попапа добавления картинки
+ */
 export const popupAddImageOpenBtn = document.querySelector ('.button_type_add');
 
-/** template и блок для вставки */
+/**
+ * @const cardSelector - селектор карточки
+ */
 export const cardSelector = document.getElementById('cards').content.querySelector('.card');
 
 /** массив для заполнения страницы 6 фотографиями */
 export const initialCards = [
   {
     name: 'Скала у берега',
-    link: './images/Image1.jpg'
+    link: rockOfTheCoast
   },
   {
     name: 'Причал',
-    link: './images/Image2.jpg'
+    link: jetty
   },
   {
     name: 'Ночной маяк',
-    link: './images/Image3.jpg'
+    link: nightBeacon
   },
   {
     name: 'Водопад',
-    link: './images/Image4.jpg'
+    link: waterfall
   },
   {
     name: 'Зимний берег',
-    link: './images/Image5.jpg'
+    link: winterCoast
   },
   {
     name: 'Котейка',
-    link: './images/Image6.jpg'
+    link: cat
   }
 ];
 /** Валидация */

@@ -1,9 +1,11 @@
-import Section from "./Section.js";
-import { Card } from "./Card.js";
-import { FormValidator } from "./FormValidator.js";
-import { PopupWithForm } from "./PopupWithForm.js";
-import { UserInfo } from "./UserInfo.js";
-import { PopupWithImage } from "./PopupWithImage.js";
+import '../pages/index.css';
+
+import Section from "../components/Section.js";
+import { Card } from "../components/Card.js";
+import { FormValidator } from "../components/FormValidator.js";
+import { PopupWithForm } from "../components/PopupWithForm.js";
+import { UserInfo } from "../components/UserInfo.js";
+import { PopupWithImage } from "../components/PopupWithImage.js";
 import {popupEditOpenBtn,
   popupAddImageOpenBtn,
   cardSelector,
@@ -20,7 +22,7 @@ import {popupEditOpenBtn,
   profilePopupSelector,
   viewPopupConfiguration,
   imagePopupSelector,
-} from "./constants.js";
+} from "../components/constants.js";
 
 Array.from(document.forms).forEach(formElement => {
   formValidators[formElement.name] = new FormValidator(validConfig, formElement);
