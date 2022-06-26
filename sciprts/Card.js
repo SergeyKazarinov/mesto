@@ -35,7 +35,6 @@ export class Card {
   }
 
   generateCard() {
-    
     this._element = this._getTemplate();
     this._cardImage = this._element.querySelector('.card__image');
     this._setEventListeners();

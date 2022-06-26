@@ -25,7 +25,6 @@ export class PopupWithForm extends Popup {
 
   _setInputValues(values) {
     this._inputs.forEach((inputElement) => {
-    
       inputElement.value = values[inputElement.id.slice(6)];
     })
   }

@@ -1,25 +1,8 @@
-/** модальные окна */
-export const popupList = Array.from(document.querySelectorAll('.popup'));
-export const popupEditProfile = document.querySelector ('.popup_type_edit-profile');
-export const popupAddImage = document.querySelector ('.popup_type_add-image');
-export const popupImageZoom = document.querySelector ('.popup_type_image-zoom');
-export const popupImage = popupImageZoom.querySelector('.popup__image');
-export const popupText = popupImageZoom.querySelector('.popup__text');
 /** кнопки */
 export const popupEditOpenBtn = document.querySelector ('.button_type_edit');
 export const popupAddImageOpenBtn = document.querySelector ('.button_type_add');
-/** поля и формы */
-export const nameInput = document.querySelector ('.form__input_type_name');
-export const jobInput = document.querySelector ('.form__input_type_job');
-export const profileName = document.querySelector ('.profile__name');
-export const profileJob = document.querySelector ('.profile__job');
-export const formProfileEdit = document.querySelector('form[name=profile-edit');
-export const formAddImage = document.querySelector('form[name=add-image');
-export const placeInput = document.querySelector ('.form__input_type_place');
-export const linkInput = document.querySelector ('.form__input_type_link');
 
 /** template и блок для вставки */
-export const newCard = document.querySelector('.elements__grid');
 export const cardSelector = document.getElementById('cards').content.querySelector('.card');
 
 /** массив для заполнения страницы 6 фотографиями */

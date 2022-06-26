@@ -1,6 +1,5 @@
 export default class Popup {
   constructor (popupSelector, popupConfig) {
-    console.log(`popupSelector: "${popupSelector}", \npopupConfig: "${popupConfig}"`);
     this._popupSelector = popupSelector;
     this._activeModifier = popupConfig.activeModifier;
     this._closeBtnSelector = popupConfig.closeBtnSelector;
@@ -25,13 +24,11 @@ export default class Popup {
   }
 
   setEventListeners() {
-
     this._popup.addEventListener('mousedown', this._handleCLoseOverlayClick);
     this._closeBtn.addEventListener('click', this._handleCLoseBtnClick);
   }
 
   open() {
-    console.dir(this);
     document.addEventListener('keydown', this._handleEscClose);
     this._popup.classList.add(this._activeModifier);
   }
