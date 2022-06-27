@@ -5,8 +5,9 @@ export class PopupWithImage extends Popup {
     super(popupSelector, popupConfig);
     this._imageSelector = imageSelector;
     this._captionSelector = captionSelector;
-    this._imageElement = document.querySelector(`.${this._imageSelector}`);
-    this._captionElement = document.querySelector(`.${this._captionSelector}`);
+    this._newPlacePopup = document.querySelector(`.${this._popupSelector}`);
+    this._imageElement = this._newPlacePopup.querySelector(`.${this._imageSelector}`);
+    this._captionElement = this._newPlacePopup.querySelector(`.${this._captionSelector}`);
   }
 
   open({name, link}) {
@@ -14,9 +15,5 @@ export class PopupWithImage extends Popup {
     this._imageElement.alt = name;
     this._captionElement.textContent = name;
     super.open();
-  }
-
-  setEventListeners() {
-    super.setEventListeners();
   }
 }

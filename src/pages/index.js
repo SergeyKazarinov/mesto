@@ -22,7 +22,7 @@ import {popupEditOpenBtn,
   profilePopupSelector,
   viewPopupConfiguration,
   imagePopupSelector,
-} from "../components/constants.js";
+} from "../utils/constants.js";
 
 Array.from(document.forms).forEach(formElement => {
   formValidators[formElement.name] = new FormValidator(validConfig, formElement);
@@ -42,7 +42,7 @@ const cardsContainer = new Section({
   renderer: createCard,
 }, cardsContainerSelector);
 
-cardsContainer.renderAll();
+cardsContainer.renderItems();
 
 const handleCardSubmit = (item) => {
   cardsContainer.addItem(item);
