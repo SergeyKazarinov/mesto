@@ -6,5 +6,5 @@
   object-position: left;
   overflow: hidden;
   justify-self: start;
-
+  z-index: 0;
 }

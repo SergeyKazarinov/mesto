@@ -1,0 +1,29 @@
+.button_type_avatar {
+  position: relative;
+  max-width: 120px;
+  min-height: 120px;
+  width: 100%;
+  border-radius: 100%;
+  background-repeat: no-repeat;
+  background-position: center center;
+
+}
+
+.button_type_avatar::before {
+  content: '';
+  background-image: url('../../../images/Vector.svg');
+  background-repeat: no-repeat;
+  background-position: center center;
+  opacity: 0;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 2;
+  transition: opacity 1s ease;
+}
+
+.button_type_avatar:hover::before {
+  opacity: 1;
+}
