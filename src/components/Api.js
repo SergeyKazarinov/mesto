@@ -51,8 +51,6 @@ export class Api {
   }
 
   patchUserInfo(data) {
-    console.log(data.name);
-    console.log(data);
     fetch(`${this._baseUrl}/users/me`, {
       method: 'PATCH',
       headers: {
@@ -72,7 +70,6 @@ export class Api {
       }
     })
     .then((result) => {
-      console.log(result);
       return result;
     })
     .catch((err) => {
@@ -88,7 +85,7 @@ export class Api {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        avatar: data.avatar,
+        avatar: data.avatar
       })
     })
     .then((res) => {
@@ -105,5 +102,33 @@ export class Api {
     .catch((err) => {
       console.log(err)
     })
+  }
+
+  addNewCard(data) {
+    return fetch(`${this._baseUrl}/cards`, {
+      method: 'POST',
+      headers: {
+        authorization: this._authorization,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        name: data.name,
+        link: data.link
+      })
+    })
+      .then((res) => {
+        if(res.ok) {
+          return res.json();
+        }else {
+          return Promise.reject(`Ошибка ${res.status}`);
+        }
+      })
+      .then((result) => {
+        console.log(result);
+        return result;
+      })
+      .catch((err) => {
+        console.log(err)
+      })
   }
 }

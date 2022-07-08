@@ -9,6 +9,10 @@ const cat = new URL('.././images/Image6.jpg', import.meta.url);
  * @const popupEditOpenBtn - кнопка открытия попапа редактирования профиля
  */
 export const popupEditOpenBtn = document.querySelector ('.button_type_edit');
+
+/**
+ * @const popupAvatarOpenBtn - кнопка открытия попапа смены аватара
+ */
 export const popupAvatarOpenBtn = document.querySelector('.button_type_avatar');
 /**
  * @const popupAddImageOpenBtn - кнопка открытия попапа добавления картинки
