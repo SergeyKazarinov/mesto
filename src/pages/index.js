@@ -54,6 +54,17 @@ const openDeletePopup = () => {
   });
   deletePopup.open();
 }
+const user = new UserInfo(profileConfiguration);
+
+const profilePopup = new PopupWithForm(
+  profilePopupSelector,
+  profileFormName,
+  popupConfiguration,
+  formConfiguration,
+  formValidators[profileFormName].deleteInputError,
+  handleProfileFormSubmit,
+  user.getUserInfo,
+  );
 
 const createCard = (item) => {
   const card = new Card(
@@ -84,7 +95,7 @@ cardsContainer.renderItems();
 
 api.getUserInfo()
 .then(result => {
-  user.setUserInfo({title: result.name, job: result.about, avatar: result.avatar});
+  user.setUserInfo({title: result.name, job: result.about});
   user.setUserAvatar({avatar: result.avatar});
 });
 
@@ -106,9 +117,9 @@ const addCardSubmitHandler = () => {
   newCardPopup.open();
 };
 
-const handleAvatarSubmit = (item) => {
-  const avatar = document.querySelector('.profile__avatar');
-  avatar.setAttribute('src', item);
+const handleAvatarSubmit = (data) => {
+  api.patchAvatarInfo(data);
+  user.setUserAvatar({avatar: data.avatar});
 }
 
 const avatarPopup = new PopupWithForm(
@@ -127,20 +138,9 @@ const handleAvatarPopupOpen = () => {
 
 /** Обработчик «отправки» формы*/
 function handleProfileFormSubmit (data) {
+  api.patchUserInfo(data);
   user.setUserInfo(data);
 };
-
-const user = new UserInfo(profileConfiguration);
-
-const profilePopup = new PopupWithForm(
-  profilePopupSelector,
-  profileFormName,
-  popupConfiguration,
-  formConfiguration,
-  formValidators[profileFormName].deleteInputError,
-  handleProfileFormSubmit,
-  user.getUserInfo,
-  );
 
 profilePopup.setEventListeners();
 
