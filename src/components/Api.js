@@ -1,4 +1,3 @@
-
 export class Api {
   constructor(options) {
     this._options = options;
@@ -7,7 +6,7 @@ export class Api {
   }
 
   getInitialCards() {
-    fetch(`${this._baseUrl}/cards`, {
+    return fetch(`${this._baseUrl}/cards`, {
       headers: {
         authorization: this._authorization
       }
@@ -20,7 +19,7 @@ export class Api {
       }
     })
     .then((result) => {
-      console.log(result);
+      return result;
     })
     .catch((err) => {
       console.log(err)
@@ -28,7 +27,7 @@ export class Api {
   }
 
   getUserInfo() {
-    fetch(`${this._baseUrl}/users/me`, {
+    return fetch(`${this._baseUrl}/users/me`, {
       headers: {
         authorization: this._authorization
       }
@@ -41,7 +40,7 @@ export class Api {
       }
     })
     .then((result) => {
-      console.log(result);
+      return result;
     })
     .catch((err) => {
       console.log(err)

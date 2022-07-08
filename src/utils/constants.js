@@ -9,6 +9,7 @@ const cat = new URL('.././images/Image6.jpg', import.meta.url);
  * @const popupEditOpenBtn - кнопка открытия попапа редактирования профиля
  */
 export const popupEditOpenBtn = document.querySelector ('.button_type_edit');
+export const popupAvatarOpenBtn = document.querySelector('.button_type_avatar');
 /**
  * @const popupAddImageOpenBtn - кнопка открытия попапа добавления картинки
  */
@@ -58,6 +59,12 @@ export const validConfig = {
 
 export const formValidators = {};
 
+/**
+ * @object
+ * @property {string} inputSelector - класс инпутов
+ * @property {string} submitBtnSelector - класс кнопки отправки формы
+ * @property {string} formSelector - класс формы
+ */
 export const formConfiguration = {
   inputSelector: 'form__input',
   submitBtnSelector: 'button_type_save',
@@ -72,6 +79,7 @@ export const popupConfiguration = {
 export const profileConfiguration = {
   titleSelector: 'profile__name', 
   jobSelector: 'profile__job',
+  avatarSelector: 'profile__avatar',
 }
 
 export const viewPopupConfiguration = {
@@ -85,3 +93,6 @@ export const profilePopupSelector = 'popup_type_edit-profile';
 export const imagePopupSelector = 'popup_type_image-zoom';
 export const newPlaceFormName = 'add-image';
 export const profileFormName = 'profile-edit';
+export const avatarPopupSelector = 'popup_type_avatar';
+export const avatarFormName = 'avatar';
+export const deletePopupSelector = 'popup_type_delete';

@@ -1,9 +1,10 @@
 export class Card {
-  constructor({item}, cardSelector, openPopupImage) {
+  constructor({item}, cardSelector, openPopupImage, openDeletePopup) {
     this._name = item.name;
     this._link = item.link;
     this.__cardSelector = cardSelector;
     this._openPopupImage = openPopupImage;
+    this._openDeletePopup = openDeletePopup;
   }
 
   /** Создание template */
@@ -19,7 +20,8 @@ export class Card {
 
   /** Удаление карточки */
   _removeImage = () => {
-    this._element.remove();
+    this._openDeletePopup();
+    // this._element.remove();
   }
 
   _handleImageClick = () => {
