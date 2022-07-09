@@ -21,6 +21,7 @@ export class Api {
       }
     })
     .then((result) => {
+      console.log(result);
       return result;
     })
     .catch((err) => {
