@@ -1,10 +1,16 @@
-import { data } from "autoprefixer";
-
 export class Api {
   constructor(options) {
     this._options = options;
     this._baseUrl = this._options.baseUrl;
     this._authorization = this._options.headers.authorization;
+  }
+
+  _checkAnswer(res) {
+    if(res.ok) {
+      return res.json();
+    }else {
+      return Promise.reject(`Ошибка ${res.status}: ${res.statusText}`);
+    }
   }
 
   getInitialCards() {
@@ -14,18 +20,7 @@ export class Api {
       }
     })
     .then((res) => {
-      if(res.ok) {
-        return res.json();
-      }else {
-        return Promise.reject(`Ошибка ${res.status}`);
-      }
-    })
-    .then((result) => {
-      console.log(result);
-      return result;
-    })
-    .catch((err) => {
-      console.log(err)
+      return this._checkAnswer(res);
     })
   }
 
@@ -36,23 +31,12 @@ export class Api {
       }
     })
     .then((res) => {
-      if(res.ok) {
-        return res.json();
-      }else {
-        return Promise.reject(`Ошибка ${res.status}`);
-      }
-    })
-    .then((result) => {
-      console.log(result);
-      return result;
-    })
-    .catch((err) => {
-      console.log(err)
+      return this._checkAnswer(res);
     })
   }
 
   patchUserInfo(data) {
-    fetch(`${this._baseUrl}/users/me`, {
+    return fetch(`${this._baseUrl}/users/me`, {
       method: 'PATCH',
       headers: {
         authorization: this._authorization,
@@ -64,22 +48,12 @@ export class Api {
       })
     })
     .then((res) => {
-      if(res.ok) {
-        return res.json();
-      }else {
-        return Promise.reject(`Ошибка ${res.status}`);
-      }
-    })
-    .then((result) => {
-      return result;
-    })
-    .catch((err) => {
-      console.log(err)
+      return this._checkAnswer(res);
     })
   }
 
   patchAvatarInfo(data) {
-    fetch(`${this._baseUrl}/users/me/avatar`, {
+    return fetch(`${this._baseUrl}/users/me/avatar`, {
       method: 'PATCH',
       headers: {
         authorization: this._authorization,
@@ -90,18 +64,7 @@ export class Api {
       })
     })
     .then((res) => {
-      if(res.ok) {
-        return res.json();
-      }else {
-        return Promise.reject(`Ошибка ${res.status}`);
-      }
-    })
-    .then((result) => {
-      console.log(result);
-      return result;
-    })
-    .catch((err) => {
-      console.log(err)
+      return this._checkAnswer(res);
     })
   }
 
@@ -118,18 +81,7 @@ export class Api {
       })
     })
       .then((res) => {
-        if(res.ok) {
-          return res.json();
-        }else {
-          return Promise.reject(`Ошибка ${res.status}`);
-        }
-      })
-      .then((result) => {
-        console.log(result);
-        return result;
-      })
-      .catch((err) => {
-        console.log(err)
+        return this._checkAnswer(res);
       })
   }
 
@@ -141,14 +93,7 @@ export class Api {
       }
     })
       .then((res) => {
-        if(res.ok) {
-          return res.json();
-        }else {
-          return Promise.reject(`Ошибка ${res.status}`);
-        }
-      })
-      .catch((err) => {
-        console.log(err)
+        return this._checkAnswer(res);
       })
   }
 
@@ -160,14 +105,7 @@ export class Api {
       }
     })
       .then((res) => {
-        if(res.ok) {
-          return res.json();
-        }else {
-          return Promise.reject(`Ошибка ${res.status}`);
-        }
-      })
-      .catch((err) => {
-        console.log(err)
+        return this._checkAnswer(res);
       })
   }
 
@@ -179,14 +117,7 @@ export class Api {
       }
     })
       .then((res) => {
-        if(res.ok) {
-          return res.json();
-        }else {
-          return Promise.reject(`Ошибка ${res.status}`);
-        }
-      })
-      .catch((err) => {
-        console.log(err)
+        return this._checkAnswer(res);
       })
   }
 }

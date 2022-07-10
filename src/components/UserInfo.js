@@ -8,7 +8,6 @@ export class UserInfo {
   }
 
   setUserInfo = (data) => {
-    console.log(data.title)
     this._titleElement.textContent = data.title || '';
     this._jobElement.textContent = data.job || '';
   }

@@ -8,9 +8,12 @@ export class PopupWithConfirmation extends Popup {
   }
 
   removeCard(data) {
-    this._api.deleteCard(data._cardId)
+    this._api.deleteCard(data._item._id)
       .then(() => {
         data.removeImage();
+      })
+      .catch((err) => {
+        console.log(err)
       });
     this.close();
   }

@@ -74,8 +74,14 @@ const createCard = (item) => {
  *  @property {string} data.job            - информация о пользователе
  */
 const handleProfileFormSubmit = (data) => {
-  api.patchUserInfo(data);
-  user.setUserInfo(data);
+  api.patchUserInfo(data)
+    .then((result) => {
+      user.setUserInfo({title: result.name, job: result.about});
+      profilePopup.close();
+    })
+    .catch((err) => {
+      console.log(err);
+    })
 };
 
 /**
@@ -85,14 +91,17 @@ const handleProfileFormSubmit = (data) => {
  */
 
 const handleAvatarSubmit = (data) => {
-  api.patchAvatarInfo(data);
-  user.setUserAvatar({avatar: data.avatar});
+  api.patchAvatarInfo(data)
+    .then((result) => {
+      user.setUserAvatar({avatar: result.avatar});
+      avatarPopup.close();
+    })
+    .catch((err) => {
+      console.log(err);
+    })
 };
 
-/**
- * @function handleCardSubmit - функция добавления новой карточки на сайт
- * @param {object} item       - данные карточки
- */
+
 
 /**
  * экземпляр класса для подключения к серверу
@@ -110,6 +119,10 @@ const api = new Api({
   }
 });
 
+/**
+ * @function handleCardSubmit - функция добавления новой карточки на сайт
+ * @param {object} data       - данные карточки
+ */
 const handleCardSubmit = (data) => {
   api.addNewCard(data)
   .then(result => {
@@ -125,6 +138,7 @@ const handleCardSubmit = (data) => {
     );
     
     cardsContainer.addItem(result);
+    newCardPopup.close();
   })
   .catch((err) => {
     console.log(err)
@@ -208,10 +222,13 @@ const deletePopup = new PopupWithConfirmation(
  * вызов метода загрузки информации о пользователе
  */
 api.getUserInfo()
-.then(result => {
-  user.setUserInfo({title: result.name, job: result.about});
-  user.setUserAvatar({avatar: result.avatar});
-});
+  .then(result => {
+    user.setUserInfo({title: result.name, job: result.about});
+    user.setUserAvatar({avatar: result.avatar});
+  })
+  .catch((err) => {
+    console.log(err);
+  });
 
 /**
  * вызов метода загрузки карточек с сервера
@@ -230,6 +247,9 @@ api.getInitialCards()
     );
     
     cardsContainer.renderItems();
+  })
+  .catch((err) => {
+    console.log(err);
   });
 
 /**
@@ -245,7 +265,6 @@ viewPopup.setEventListeners();
  * @function openDeletePopup - функция открытия попапа удаления карточки
  */
 const openDeletePopup = (data) => {
-  console.log(data);
   deletePopup.setEventListeners(data);
   deletePopup.open();
 }
