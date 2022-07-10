@@ -151,4 +151,42 @@ export class Api {
         console.log(err)
       })
   }
+
+  setLike(data) {
+    return fetch(`${this._baseUrl}/cards/${data._id}/likes`, {
+      method: 'PUT',
+      headers: {
+        authorization: this._authorization
+      }
+    })
+      .then((res) => {
+        if(res.ok) {
+          return res.json();
+        }else {
+          return Promise.reject(`Ошибка ${res.status}`);
+        }
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }
+
+  deleteLike(data) {
+    return fetch(`${this._baseUrl}/cards/${data._id}/likes`, {
+      method: 'DELETE',
+      headers: {
+        authorization: this._authorization
+      }
+    })
+      .then((res) => {
+        if(res.ok) {
+          return res.json();
+        }else {
+          return Promise.reject(`Ошибка ${res.status}`);
+        }
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }
 }

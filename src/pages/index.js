@@ -30,7 +30,6 @@ import {popupEditOpenBtn,
   confirmationButtonSelector,
   myId,
 } from "../utils/constants.js";
-import Popup from '../components/Popup';
 
 /**
  * Перебор всех форм
@@ -62,7 +61,8 @@ const createCard = (item) => {
     cardSelector,
     myId,
     viewPopup.open.bind(viewPopup),
-    openDeletePopup
+    openDeletePopup,
+    api,
     );
   return card.generateCard();
 };
@@ -125,6 +125,9 @@ const handleCardSubmit = (data) => {
     );
     
     cardsContainer.addItem(result);
+  })
+  .catch((err) => {
+    console.log(err)
   });
 };
 

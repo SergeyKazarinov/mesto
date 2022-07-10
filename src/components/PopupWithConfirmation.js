@@ -17,12 +17,12 @@ export class PopupWithConfirmation extends Popup {
 
   setEventListeners(data) {
     super.setEventListeners();
-    this.function = () => {this.removeCard(data)};
-    this._confirmationButton.addEventListener('click', this.function)
+    this.removeCardCallback = () => {this.removeCard(data)};
+    this._confirmationButton.addEventListener('click', this.removeCardCallback)
   }
 
   close() {
-    this._confirmationButton.removeEventListener('click', this.function);
+    this._confirmationButton.removeEventListener('click', this.removeCardCallback);
     super.close();
   }
 }
