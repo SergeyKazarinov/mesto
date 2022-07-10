@@ -100,3 +100,5 @@ export const profileFormName = 'profile-edit';
 export const avatarPopupSelector = 'popup_type_avatar';
 export const avatarFormName = 'avatar';
 export const deletePopupSelector = 'popup_type_delete';
+export const confirmationButtonSelector = 'button_type_delete';
+export const myId = '1f938e0ac95d82203f13dc8c';

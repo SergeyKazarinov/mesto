@@ -7,6 +7,7 @@ import { PopupWithForm } from "../components/PopupWithForm.js";
 import { UserInfo } from "../components/UserInfo.js";
 import { PopupWithImage } from "../components/PopupWithImage.js";
 import { Api } from '../components/Api.js';
+import { PopupWithConfirmation } from '../components/PopupWithConfirmation.js';
 import {popupEditOpenBtn,
   popupAddImageOpenBtn,
   cardSelector,
@@ -26,6 +27,8 @@ import {popupEditOpenBtn,
   avatarFormName,
   popupAvatarOpenBtn,
   deletePopupSelector,
+  confirmationButtonSelector,
+  myId,
 } from "../utils/constants.js";
 import Popup from '../components/Popup';
 
@@ -57,6 +60,7 @@ const createCard = (item) => {
   const card = new Card(
     {item},
     cardSelector,
+    myId,
     viewPopup.open.bind(viewPopup),
     openDeletePopup
     );
@@ -186,13 +190,15 @@ const viewPopup = new PopupWithImage(
 );
 
 /**
- * создание экземпляра класса для попапа удаления картинки
+ * экземпляр класса для попапа удаления картинки
  * @constanta
- * @type {class} Popup
+ * @type {class} PopupWithConfirmation
  */
-const deletePopup = new Popup(
+const deletePopup = new PopupWithConfirmation(
     deletePopupSelector,
-    popupConfiguration
+    popupConfiguration,
+    confirmationButtonSelector,
+    api,
 );
 
 /**
@@ -230,16 +236,14 @@ profilePopup.setEventListeners();
 avatarPopup.setEventListeners();
 newCardPopup.setEventListeners();
 viewPopup.setEventListeners();
-deletePopup.setEventListeners();
+
 
 /**
- * @function openDeletePopup - функция открытия попапа удаления карточки ПЕРЕДЕЛАТЬ
+ * @function openDeletePopup - функция открытия попапа удаления карточки
  */
-const openDeletePopup = () => {
-  const deleteButtonSubmit = document.querySelector('#button-delete');
-  deleteButtonSubmit.addEventListener('click', () => {
-    deletePopup.close();
-  });
+const openDeletePopup = (data) => {
+  console.log(data);
+  deletePopup.setEventListeners(data);
   deletePopup.open();
 }
 

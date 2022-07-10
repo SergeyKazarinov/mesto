@@ -1,9 +1,12 @@
 export class Card {
-  constructor({item}, cardSelector, openPopupImage, openDeletePopup) {
+  constructor({item}, cardSelector, myId, openPopupImage, openDeletePopup) {
     this._name = item.name;
     this._link = item.link;
     this._numberLikes = item.likes.length;
-    this._owner_id = item.owner._id;
+    this._item = item;
+    this._cardId = item._id;
+    this._ownerId = item.owner._id;
+    this._myId = myId;
     this.__cardSelector = cardSelector;
     this._openPopupImage = openPopupImage;
     this._openDeletePopup = openDeletePopup;
@@ -20,10 +23,12 @@ export class Card {
     this._likeButton.classList.toggle('button_type_like-active');
   }
 
+  _openPopup = () => {
+    this._openDeletePopup(this);
+  }
   /** Удаление карточки */
-  _removeImage = () => {
-    this._openDeletePopup();
-    // this._element.remove();
+  removeImage = () => {
+    this._element.remove();
   }
 
   _handleImageClick = () => {
@@ -34,12 +39,12 @@ export class Card {
     this._likeButton = this._element.querySelector('.button_type_like');
 
     this._likeButton.addEventListener ('click', this._like); //лайк
-    this._element.querySelector('.button_type_remove').addEventListener('click', this._removeImage); //Удаление картинки
+    this._element.querySelector('.button_type_remove').addEventListener('click', this._openPopup); //Удаление картинки
     this._element.querySelector('.button_type_card').addEventListener('click', this._handleImageClick); //открытие картинки
   }
 
   _activeRemoveButton() {
-    if(this._owner_id === '1f938e0ac95d82203f13dc8c') {
+    if(this._ownerId === this._myId) {
       this._element.querySelector('.button_type_remove').classList.add('button_type_remove-active');
     }
   }
