@@ -68,7 +68,7 @@ export default class Popup {
   }
 
   /**
-   * метод закрытия попапа и удаления события нажатия клавиши
+   * Метод закрытия попапа и удаления события нажатия клавиши
    */
   close() {
     document.removeEventListener('keydown', this._handleEscClose);
