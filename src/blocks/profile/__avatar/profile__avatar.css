@@ -6,5 +6,6 @@
   object-position: center;
   overflow: hidden;
   justify-self: start;
-  z-index: 0;
+  z-index: 1;
+  transition: .5s;
 }

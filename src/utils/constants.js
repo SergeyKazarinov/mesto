@@ -13,11 +13,19 @@ export const popupAvatarOpenBtn = document.querySelector('.button_type_avatar');
 export const popupAddImageOpenBtn = document.querySelector ('.button_type_add');
 
 /**
- * @const cardSelector - селектор карточки
+ * @const cardSelector - контейнер карточки
  */
 export const cardSelector = document.getElementById('cards').content.querySelector('.card');
 
-/** Валидация */
+/**
+ * @const validConfig - объект данных для валидации формы
+ * @property {string} formSelector          - CSS-класс формы
+ * @property {string} inputSelector         - CSS-класс инпута
+ * @property {string} submitButtonSelector  - CSS-класс кнопки отправки формы
+ * @property {string} inactiveButtonClass   - CSS-класс для деактивации кнопки
+ * @property {string} inputErrorClass       - CSS-класс для добавления свойст невалидности инпута
+ * @property {string} errorClass            - CSS-класс для вывода сообщения ошибки
+ */
 export const validConfig = {
   formSelector: '.form',
   inputSelector: '.form__input',
