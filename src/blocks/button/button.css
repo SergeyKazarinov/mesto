@@ -7,7 +7,7 @@
   opacity: 1;
 }
 
-.button:hover {
+.button:hover  {
   opacity: .6;
   transition: .5s;
   cursor: pointer;
