@@ -1,31 +1,28 @@
 import Popup from "./Popup.js";
 
 export class PopupWithConfirmation extends Popup {
-  constructor (popupSelector, popupConfig, confirmationButtonSelector, api) {
+  constructor (popupSelector, popupConfig, confirmationButtonSelector, removeCardCallback) {
     super(popupSelector, popupConfig);
     this._confirmationButton = this._popup.querySelector(`.${confirmationButtonSelector}`);
-    this._api = api;
+    this._removeCardCallback = removeCardCallback;
   }
 
-  removeCard(data) {
-    this._api.deleteCard(data._item._id)
-      .then(() => {
-        data.removeImage();
-      })
-      .catch((err) => {
-        console.log(err)
-      });
+  _removeCard = () => {
+    this._removeCardCallback(this._data);
     this.close();
   }
 
-  setEventListeners(data) {
+  setEventListeners() {
     super.setEventListeners();
-    this.removeCardCallback = () => {this.removeCard(data)};
-    this._confirmationButton.addEventListener('click', this.removeCardCallback)
+    this._confirmationButton.addEventListener('click', this._removeCard)
   }
 
+  open(data) {
+    this._data = data;
+    super.open();
+  }
+  
   close() {
-    this._confirmationButton.removeEventListener('click', this.removeCardCallback);
     super.close();
   }
 }

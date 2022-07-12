@@ -153,10 +153,3 @@ export const deletePopupSelector = 'popup_type_delete';
  * @type {string}
  */
 export const confirmationButtonSelector = 'button_type_delete';
-
-/**
- * ID пользователя
- * @constanta
- * @type {string}
- */
-export const myId = '1f938e0ac95d82203f13dc8c';
