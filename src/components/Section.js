@@ -13,8 +13,7 @@ export default class Section {
    * @param {property} renderer         - функция создания элемента
    * @param {string} containerSelector  - CSS класс контейнера для вставки элементов
    */
-  constructor({ items, renderer }, containerSelector) {
-    this._items = items;
+  constructor(renderer, containerSelector) {
     this._renderer = renderer;
     this._containerSelector = containerSelector;
     this._container = document.querySelector(`.${this._containerSelector}`);
@@ -22,17 +21,18 @@ export default class Section {
 
   /**
    * @method addItem        - Метод добавления элемента в DOM-узел
-   * @param {'object'} item - объект массива данных
+   * @param {'object'} item - объект карточки
    */
   addItem(item) {
     this._container.prepend(this._renderer(item));
   }
 
   /**
-   * @method rendererItem - метод перебора массива данных
+   * @method rendererItem           - метод перебора массива данных
+   * @param {Array.{object}} cards  - массив объектов карточек
    */
-  renderItems() {
-    this._items.forEach(item => {
+  renderItems(cards) {
+    cards.forEach(item => {
       this.addItem(item);
     });
   }

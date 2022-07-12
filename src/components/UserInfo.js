@@ -10,13 +10,11 @@ export class UserInfo {
   setUserInfo = (data) => {
     this._titleElement.textContent = data.title || '';
     this._jobElement.textContent = data.job || '';
-  }
-
-  setUserAvatar = (data) => {
-    this._avatarElement.src = data.avatar || 'https://avatarko.ru/img/kartinka/33/multfilm_lyagushka_32117.jpg';
+    this._avatarElement.src = data.avatar || '';
+    this._myId = data.id || '';
   }
 
   getUserInfo = () => {
-    return {title: this._titleElement.textContent, job: this._jobElement.textContent};
+    return {title: this._titleElement.textContent, job: this._jobElement.textContent, avatar: this._avatarElement.src, id: this._myId};
   }
 }

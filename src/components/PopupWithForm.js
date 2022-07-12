@@ -1,18 +1,19 @@
 import Popup from "./Popup.js";
 
 export class PopupWithForm extends Popup {
-  constructor (popupSelector, formName, popupConfig, {inputSelector, submitBtnSelector, formSelector}, errorsResetCallBack, submitCallBack, getterCallBack = null) {
+  constructor (popupSelector, formName, popupConfig, {inputSelector, submitBtnSelector, formSelector}, errorsResetCallBack, submitCallBack, buttonName, getterCallBack = null) {
     super(popupSelector, popupConfig);
     this._formName = formName;
-    this._submitCallBack = submitCallBack;
     this._inputSelector = inputSelector;
     this._submitBtnSelector = submitBtnSelector;
-    this._getterCallBack = getterCallBack;
     this._formSelector = formSelector;
+    this._errorsResetCallBack = errorsResetCallBack;
+    this._submitCallBack = submitCallBack;
+    this._buttonName = buttonName;
+    this._getterCallBack = getterCallBack;
     this._formElement = document.forms[this._formName];
     this._inputs = Array.from(this._formElement.querySelectorAll(`.${this._inputSelector}`));
     this._submitBtn = this._formElement.querySelector(`.${this._submitBtnSelector}`);
-    this._errorsResetCallBack = errorsResetCallBack;
   }
 
   _getInputValues() {
@@ -24,6 +25,7 @@ export class PopupWithForm extends Popup {
   }
 
   _setInputValues(values) {
+    console.log(values)
     this._inputs.forEach((inputElement) => {
       inputElement.value = values[inputElement.id.slice(6)];
     })
@@ -33,25 +35,23 @@ export class PopupWithForm extends Popup {
     evt.preventDefault();
     this._submitBtn.textContent = 'Сохранение...';
     this._submitBtn.disabled = true;
-    this._submitCallBack(this._getInputValues());
+    this._submitCallBack(this._getInputValues(), this);
   }
   setEventListeners() {
     super.setEventListeners();
     this._formElement.addEventListener('submit', this._handleSubmit);
   }
 
+  setSubmitBtnName = () => {
+    this._submitBtn.textContent = this._buttonName;
+  }
+
   open = () => {
     if(this._getterCallBack) {
       this._setInputValues(this._getterCallBack());
-    } else {
-      this._formElement.reset();
     }
+
     this._errorsResetCallBack();
-    if(this._popupSelector === 'popup_type_add-image') {
-      this._submitBtn.textContent = 'Создать';
-    } else {
-      this._submitBtn.textContent = 'Сохранить';
-    };
     super.open();
   }
 

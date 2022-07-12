@@ -28,7 +28,6 @@ import {popupEditOpenBtn,
   popupAvatarOpenBtn,
   deletePopupSelector,
   confirmationButtonSelector,
-  myId,
 } from "../utils/constants.js";
 
 /**
@@ -46,6 +45,48 @@ Array.from(document.forms).forEach(formElement => {
 });
 
 /**
+ * @function setLikes       - установка лайка на карточке
+ * @param {object} dataCard - данные карточки
+ */
+const setLikes = (dataCard) => {
+  api.setLike(dataCard)
+  .then((result) => {
+    dataCard.updateLike(result);
+  })
+  .catch((err) => {
+    console.log(err)
+  })
+}
+
+/**
+ * @function removeLikes       - удаление лайка на карточке
+ * @param {object} dataCard    - данные карточки
+ */
+const removeLikes = (dataCard) => {
+  api.deleteLike(dataCard)
+  .then((result) => {
+    dataCard.updateLike(result);
+  })
+  .catch((err) => {
+    console.log(err)
+  })
+}
+
+/**
+ * @function removeCard        - удаление карточки
+ * @param {object} dataCard    - данные карточки
+ */
+const removeCard = (dataCard) => {
+  api.deleteCard(dataCard._item._id)
+    .then(() => {
+      dataCard.removeImage();
+    })
+    .catch((err) => {
+      console.log(err)
+    });
+}
+
+/**
  * @function createCard - функция создания карточки
  * @param {object} item - массив карточек
  * @returns             - возвращает готовую карточку
@@ -59,13 +100,15 @@ const createCard = (item) => {
   const card = new Card(
     {item},
     cardSelector,
-    myId,
+    user.getUserInfo(),
     viewPopup.open.bind(viewPopup),
     openDeletePopup,
-    api,
+    setLikes,
+    removeLikes,
     );
   return card.generateCard();
 };
+
 
 /**
  * @function handleProfileFormSubmit - функция отправки формы данных пользователя и установки новых данных на страницу
@@ -73,14 +116,17 @@ const createCard = (item) => {
  *  @property {string} data.title          - Имя пользователя
  *  @property {string} data.job            - информация о пользователе
  */
-const handleProfileFormSubmit = (data) => {
-  api.patchUserInfo(data)
+const handleProfileFormSubmit = (dataUser, dataPopup) => {
+  api.patchUserInfo(dataUser)
     .then((result) => {
-      user.setUserInfo({title: result.name, job: result.about});
+      user.setUserInfo({title: result.name, job: result.about, avatar: result.avatar});
       profilePopup.close();
     })
     .catch((err) => {
       console.log(err);
+    })
+    .finally(() => {
+      dataPopup.setSubmitBtnName();
     })
 };
 
@@ -90,18 +136,19 @@ const handleProfileFormSubmit = (data) => {
  *  @property {string} data.avatar    - ссылка на картинку
  */
 
-const handleAvatarSubmit = (data) => {
-  api.patchAvatarInfo(data)
+const handleAvatarSubmit = (dataUser, dataPopup) => {
+  api.patchAvatarInfo(dataUser)
     .then((result) => {
-      user.setUserAvatar({avatar: result.avatar});
+      user.setUserInfo({title: result.name, job: result.about, avatar: result.avatar});
       avatarPopup.close();
     })
     .catch((err) => {
       console.log(err);
     })
+    .finally(() => {
+      dataPopup.setSubmitBtnName();
+    })
 };
-
-
 
 /**
  * экземпляр класса для подключения к серверу
@@ -123,27 +170,26 @@ const api = new Api({
  * @function handleCardSubmit - функция добавления новой карточки на сайт
  * @param {object} data       - данные карточки
  */
-const handleCardSubmit = (data) => {
-  api.addNewCard(data)
+const handleCardSubmit = (dataCard, dataPopup) => {
+  api.addNewCard(dataCard)
   .then(result => {
-    /**
-     * экземпляр класса для вставки готовой карточки
-     * @constanta
-     * @type {class} Section
-     */
-    const cardsContainer = new Section({
-      items: result,
-      renderer: createCard,
-    }, cardsContainerSelector
-    );
-    
     cardsContainer.addItem(result);
     newCardPopup.close();
   })
   .catch((err) => {
     console.log(err)
-  });
+  })
+  .finally(() => {
+    dataPopup.setSubmitBtnName();
+  })
 };
+
+/**
+ * экземпляр класса для вставки готовой карточки
+ * @constanta
+ * @type {class} Section
+ */
+const cardsContainer = new Section(createCard, cardsContainerSelector);
 
 /**
  * создание экземпляра класса UserInfo для получения данных о пользователе
@@ -164,6 +210,7 @@ const profilePopup = new PopupWithForm(
   formConfiguration,
   formValidators[profileFormName].deleteInputError,
   handleProfileFormSubmit,
+  'Сохранить',
   user.getUserInfo,
 );
 
@@ -178,7 +225,8 @@ const avatarPopup = new PopupWithForm(
   popupConfiguration,
   formConfiguration,
   formValidators[avatarFormName].deleteInputError,
-  handleAvatarSubmit
+  handleAvatarSubmit,
+  'Сохранить',
 );
 
 /**
@@ -193,6 +241,7 @@ const newCardPopup = new PopupWithForm(
   formConfiguration,
   formValidators[newPlaceFormName].deleteInputError,
   handleCardSubmit,
+  'Создать',
 );
 
 /**
@@ -215,38 +264,19 @@ const deletePopup = new PopupWithConfirmation(
     deletePopupSelector,
     popupConfiguration,
     confirmationButtonSelector,
-    api,
+    removeCard,
 );
 
 /**
- * вызов метода загрузки информации о пользователе
+ * Загрузка данных о пользователе и загрузка картинок из сервера
  */
-api.getUserInfo()
-  .then(result => {
-    user.setUserInfo({title: result.name, job: result.about});
-    user.setUserAvatar({avatar: result.avatar});
-  })
-  .catch((err) => {
-    console.log(err);
-  });
-
-/**
- * вызов метода загрузки карточек с сервера
- */
-api.getInitialCards()
-  .then(result => {
-    /**
-     * экземпляр класса для вставки готовой карточки
-     * @constanta
-     * @type {class} Section
-     */
-    const cardsContainer = new Section({
-      items: result.reverse(),
-      renderer: createCard,
-    }, cardsContainerSelector
-    );
-    
-    cardsContainer.renderItems();
+Promise.all([
+  api.getUserInfo(),
+  api.getInitialCards()
+])
+  .then(([info, initialCards]) => {
+    user.setUserInfo({title: info.name, job: info.about, avatar: info.avatar, id: info._id});
+    cardsContainer.renderItems(initialCards.reverse());
   })
   .catch((err) => {
     console.log(err);
@@ -259,14 +289,13 @@ profilePopup.setEventListeners();
 avatarPopup.setEventListeners();
 newCardPopup.setEventListeners();
 viewPopup.setEventListeners();
-
+deletePopup.setEventListeners();
 
 /**
  * @function openDeletePopup - функция открытия попапа удаления карточки
  */
 const openDeletePopup = (data) => {
-  deletePopup.setEventListeners(data);
-  deletePopup.open();
+  deletePopup.open(data);
 }
 
 /**
